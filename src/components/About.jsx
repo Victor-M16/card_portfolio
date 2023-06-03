@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tilt } from 'react-tilt';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 import { styles } from '../styles';
 import { services } from '../constants'; // Update the import statement
@@ -9,14 +9,19 @@ import { fadeIn, textVariant } from '../utils/motion'
 import { SectionWrapper } from '../hoc';
 
 const ServiceCard = ({ index, title, icon }) => {
+  const tiltRef = React.useRef(null);
+  const touchX = useMotionValue(0);
+  const rotateX = useTransform(touchX, [-50, 50], [5, -5]);
+
   return (
-    <Tilt className="xs:w-[250px] w-full">
+    <Tilt ref={tiltRef} className="xs:w-[250px] w-full">
       <motion.div
         variants={fadeIn("right","spring", 0.5 * index, 0.75)}
         className='w-full green-pink-gradient p-[1px] 
         rounded-[20px] shadow-card'
-        >
-        <div
+        style={{ rotateX }}
+      >
+        <motion.div
           options={{
             max: 45,
             scale: 1,
@@ -24,12 +29,26 @@ const ServiceCard = ({ index, title, icon }) => {
           }}
           className='bg-tertiary rounded-[20px] py-5 px-12
           min-h-[280px] flex justify-evenly
-          items-center flex-col'>
-            <img src={icon} alt={title}
-            className='w-16 h-16 object-contain'/>
-            <h3 className="text-white text-[20px] font-bold text-center">{title}</h3>
-          </div>
-
+          items-center flex-col'
+          onMouseEnter={() => {
+            tiltRef.current.onMouseEnter();
+          }}
+          onMouseLeave={() => {
+            tiltRef.current.onMouseLeave();
+          }}
+          onTouchStart={() => {
+            tiltRef.current.onMouseEnter();
+          }}
+          onTouchEnd={() => {
+            tiltRef.current.onMouseLeave();
+          }}
+          onTouchMove={(event) => {
+            touchX.set(event.touches[0].clientX - event.target.offsetWidth / 2);
+          }}
+        >
+          <img src={icon} alt={title} className='w-16 h-16 object-contain'/>
+          <h3 className="text-white text-[20px] font-bold text-center">{title}</h3>
+        </motion.div>
       </motion.div>
     </Tilt>
   );
@@ -46,7 +65,8 @@ const About = () => {
       <motion.p 
         variants={fadeIn("","",0.1,1)}
         className='mt-4 text-secondary text-[17px]
-        max-w-3xl leading-[30px]'>
+        max-w-3xl leading-[30px]'
+      >
         I'm a skilled software engineer with experience using TypeScript, JavaScript and Python, 
         along with frameworks like React, Three.js and Django for web 
         development. I also do data science and machine learning using Python. I am a fast learner 
@@ -62,4 +82,4 @@ const About = () => {
   );
 };
 
-export default SectionWrapper(About, "about")
+export default SectionWrapper(About, "about");
