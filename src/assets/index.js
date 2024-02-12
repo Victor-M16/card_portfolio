@@ -35,6 +35,10 @@ import portfolio from "./portfolio.png";
 import portfolio3d from "./portfolio3d.png";
 import trafficid from "./trafficid.png";
 import timetableapp from "./timetableapp.png";
+import sips_i from "./sips_i.jpg";
+import sips_p from "./sips_p.jpg";
+import sips_pi from "./sips_pi.jpg";
+import frmt from "./frmt.png";
 
 import victor from "./victor.png";
 import victorsmile from "./victorsmile.jpg";
@@ -76,5 +80,9 @@ export {
   portfolio3d,
   victor,
   victorsmile,
+  sips_i,
+  sips_p,
+  sips_pi,
+  frmt,
 };
 

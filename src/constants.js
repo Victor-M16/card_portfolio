@@ -25,6 +25,10 @@ import {
     portfolio3d,
     victor,
     victorsmile,
+    sips_i,
+    sips_p,
+    sips_pi,
+    frmt,
   } from "./assets";
   
   export const navLinks = [
@@ -44,11 +48,11 @@ import {
   
   const services = [
     {
-      title: "Fullstack Developer",
+      title: "Django Fullstack Developer",
       icon: web,
     },
     {
-      title: "Flutter Developer",
+      title: "ReactNative Developer",
       icon: mobile,
     },
     {
@@ -94,18 +98,18 @@ import {
       name: "Tailwind CSS",
       icon: tailwind,
     },
-    {
-      name: "Node JS",
-      icon: nodejs,
-    },
-    {
-      name: "MongoDB",
-      icon: mongodb,
-    },
-    {
-      name: "Three JS",
-      icon: threejs,
-    },
+    // {
+    //   name: "Node JS",
+    //   icon: nodejs,
+    // },
+    // {
+    //   name: "MongoDB",
+    //   icon: mongodb,
+    // },
+    // {
+    //   name: "Three JS",
+    //   icon: threejs,
+    // },
     {
       name: "git",
       icon: git,
@@ -119,54 +123,40 @@ import {
   
   const experiences = [
     {
-      title: "Full stack Developer",
-      company_name: "Phaet Consolidated",
+      title: "Fullstack Developer",
+      company_name: "Lemonade Systems",
       icon: phaet,
       iconBg: "#000000",
       date: "Jan 2023 - Present",
       points: [
-        "Developing and maintaining web applications using React.js and Django.",
-        "Collaborating with cross-functional teams including product managers to create high-quality products.",
-        "Implementing responsive design and ensuring cross-browser compatibility.",
-        "Created and maintaining the web application that integrates the company Information System and Order Management System",
+        "Created and maintaining the web application that displays company information for clients like Phaet Holdings Limted.",
       ],
     },
     {
-      title: "React Native Developer",
-      company_name: "Phaet Consolidated",
+      title: "Fullstack Developer",
+      company_name: "Rydberg Starck Limited",
       icon: phaet,
       iconBg: "#000000",
-      date: "Jan 2023 - Present",
+      date: "June 2023 - Present",
       points: [
-        "Created and maintaining the mobile application that integrates the company Information System and Order Management System",
-      ],
-    },
-    {
-      title: "Full stack Developer",
-      company_name: "Cupcake Data Analytics",
-      icon: cupcake,
-      iconBg: "#390050",
-      date: "May 2023 - Present",
-      points: [
-        "Developing and maintaining web applications using React.js and Django.",
+        "Developing and maintaining web applications using Django.",
         "Collaborating with cross-functional teams including product managers to create high-quality products.",
-        "Implementing responsive design and ensuring cross-browser compatibility.",
-        "Created and maintaining the web application that integrates the company Information System and Order Management System",
+        "Implementing FRMT, a system that has a web app module, mobile app module and USSD to allow citizens, and entities to keep track of their various payments.",
       ],
     },
     {
-      title: "Data Scientist",
-      company_name: "Cupcake Data Analytics",
-      icon: cupcake,
-      iconBg: "#390050",
-      date: "May 2023 - Present",
+      title: "Digital Malawi Hackathon Winner",
+      company_name: "Team Sixth Sense - SIPS",
+      icon: phaet,
+      iconBg: "#000000",
+      date: "February 2024",
       points: [
-        "Conducting extensive data analysis and exploration using Python, uncovering valuable insights from large datasets.",
-        "Developed and implemented machine learning models to solve complex business problems, leveraging Python libraries such as scikit-learn and TensorFlow.",
-        "Applying advanced statistical analysis techniques in Python, including hypothesis testing, regression analysis, and time series analysis.",
-        "Creating compelling data visualizations and reports using Python libraries like Matplotlib and Plotly, effectively communicating findings to stakeholders.",
+        "Developed SIPS, an Inventory Management and Procurement web application system using Django and React.",
+        "Integrated a Raspberry Pi RFID device with the django web app to show real time updates",
+        "Integrated predictive machine learning (SARIMAX model) with the django web app to show important inventory management metrics like optimum order quantity and reorder levels.",
       ],
     },
+    
 
   ];
   
@@ -184,21 +174,58 @@ import {
         "I've never met a web developer who truly cares about their clients' success like Victor does.",
       name: "Emmanuel Mjimapemba",
       designation: "CEO",
-      company: "Phaet Consolidated",
+      company: "Phaet Holdings Limted",
       image: victor,
     },
     {
       testimonial:
-        "After Victor optimized our website, our traffic increased by 50%. We can't thank them enough!",
-      name: "You",
+        "Victor works relentlessly to meet project deadlines. We love working together with him.",
+      name: "Yusuf Chimole",
       designation: "CEO",
-      company: "A very Smart Organisation",
+      company: "Rydberg Starck Limited",
       image: victor,
     },
   ];
   
   const projects = [
-
+    {
+      name: "Smarter Inventory and Procurement System",
+      description:
+        "SIPS allows users to keep track of RFID tagged inventory items in real time via their web app, and can integrate with procurement systems by sending them RFQs when stock levels deplete below metrics suggested by a trained SARIMAX model.",
+      tags: [
+        {
+          name: "python",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "reactjs",
+          color: "green-text-gradient",
+        },
+        {
+          name: "raspberrypi",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: sips_pi,
+      source_code_link: "https://github.com/Victor-M16/Python-Traffic-Signs-Recognition-System",
+    },
+    {
+      name: "Financial Revenue Management and Taxation System",
+      description:
+        "FRMT is a unified financial management application that allows councils, entitties and citizens to manage their releveant payments. ",
+      tags: [
+        {
+          name: "django",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "javascript",
+          color: "blue-text-gradient",
+        },
+      ],
+      image: frmt,
+      source_code_link: "https://github.com/Victor-M16/Python-Traffic-Signs-Recognition-System",
+    },
     {
       name: "Traffic Signs Recognition System",
       description:
