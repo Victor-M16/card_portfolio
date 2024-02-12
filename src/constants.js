@@ -220,7 +220,7 @@ import {
         },
         {
           name: "javascript",
-          color: "blue-text-gradient",
+          color: "green-text-gradient",
         },
       ],
       image: frmt,
