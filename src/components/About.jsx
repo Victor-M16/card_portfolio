@@ -67,8 +67,8 @@ const About = () => {
         className='mt-4 text-secondary text-[17px]
         max-w-3xl leading-[30px]'
       >
-        I'm a skilled software engineer with experience using JavaScript, Python and Java. 
-        I love doing IoT, data science and machine learning projects. I am a fast learner 
+        I'm an award winning and skilled computer engineer with experience using JavaScript, Python, Raspberry Pi and Arduino. 
+        I love doing Internet of Things(IoT) and  machine learning(AI) projects. I am a fast learner 
         and take a client-first approach to produce efficient, scalable, and user-friendly solutions that have
         real-world applications. Let's collaborate to bring your ideas to life!
       </motion.p>

@@ -60,7 +60,7 @@ import {
       icon: backend,
     },
     {
-      title: "IoT engineer",
+      title: "IoT systems engineer",
       icon: creator,
     },
   ];
@@ -207,7 +207,7 @@ import {
         },
       ],
       image: sips_pi,
-      source_code_link: "https://github.com/Victor-M16/Python-Traffic-Signs-Recognition-System",
+      source_code_link: "https://github.com/Victor-M16/Stores-Management",
     },
     {
       name: "Financial Revenue Management and Taxation System",
@@ -224,7 +224,7 @@ import {
         },
       ],
       image: frmt,
-      source_code_link: "https://github.com/Victor-M16/Python-Traffic-Signs-Recognition-System",
+      source_code_link: "https://github.com/rydbergstarck/frmt",
     },
     {
       name: "Traffic Signs Recognition System",
