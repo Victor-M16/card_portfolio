@@ -67,10 +67,22 @@ const About = () => {
         className='mt-4 text-secondary text-[17px]
         max-w-3xl leading-[30px]'
       >
-        I'm an award winning and skilled computer engineer with experience using JavaScript, Python, Raspberry Pi and Arduino. 
-        I love doing Internet of Things(IoT) and  machine learning(AI) projects. I am a fast learner 
-        and take a client-first approach to produce efficient, scalable, and user-friendly solutions that have
-        real-world applications. Let's collaborate to bring your ideas to life!
+        I'm a multi-award winning electronics and computer engineer with experience building both monolithic and microservice based systems. 
+        My technology stack includes Java, Python, JavaScript, Arduino language, and PostgreSQL among others. 
+        
+        My passion lies in leveraging technology to solve real world business problems such as process optimization, and more importantly,
+        social problems such as the digital and literacy divide.
+
+        With me, you are not just getting a competent developer, you are getting an empathetic one who will go 
+        above and beyond to make sure your needs are met.
+
+        I have a track record of meeting project deadlines and creating innovative solutions that display both my
+        passion for the craft of software engineering as well as my humanitarian need to improve the lives of the less fortunate.
+
+        I am a fast learner, who believes in being meticulous and leveraging team-work to build solutions that matter.
+        I take a client-first approach to produce compliant, performant, scalable and maintainable user-friendly solutions.
+
+        Let's be more, together!
       </motion.p>
       <div className='mt-20 flex flex-wrap gap-10'>
         {services.map((service, index) => (
