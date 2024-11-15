@@ -7,7 +7,6 @@ import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
 
-import css from "./tech/css.png";
 import docker from "./tech/docker.png";
 import figma from "./tech/figma.png";
 import git from "./tech/git.png";
@@ -24,8 +23,6 @@ import django from "./tech/django.png";
 import python from "./tech/python.png";
 import mysql from "./tech/mysql.png";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 import phaet from "./company/phaet.png";
@@ -39,6 +36,11 @@ import sips_i from "./sips_i.jpg";
 import sips_p from "./sips_p.jpg";
 import sips_pi from "./sips_pi.jpg";
 import frmt from "./frmt.png";
+import valentine from "./valentine.png";
+import smart_pharm from "./smart_pharm.png";
+import phaet_info from "./phaet_info.png";
+import facial_recognition from "./facial_recognition.png";
+
 
 import victor from "./victor.png";
 import victorsmile from "./victorsmile.jpg";
@@ -52,21 +54,19 @@ export {
   github,
   menu,
   close,
-  css,
   docker,
-  figma,
+
   git,
   html,
   javascript,
-  mongodb,
+
   nodejs,
   reactjs,
-  redux,
+
   tailwind,
   typescript,
   threejs,
-  meta,
-  shopify,
+
   starbucks,
   tesla,
   portfolio,
@@ -84,5 +84,9 @@ export {
   sips_p,
   sips_pi,
   frmt,
+  valentine,
+  phaet_info,
+  smart_pharm,
+  facial_recognition,
 };
 

@@ -4,18 +4,11 @@ import {
     creator,
     web,
     javascript,
-    typescript,
     html,
-    css,
     reactjs,
-    redux,
     tailwind,
-    nodejs,
-    mongodb,
     git,
-    threejs,
     phaet,
-    cupcake,
     django,
     python,
     mysql,
@@ -29,6 +22,11 @@ import {
     sips_p,
     sips_pi,
     frmt,
+    docker,
+    smart_pharm,
+    phaet_info,
+    valentine,
+    facial_recognition,
     
   } from "./assets";
   
@@ -74,10 +72,6 @@ import {
     {
       name: "HTML 5",
       icon: html,
-    },
-    {
-      name: "CSS 3",
-      icon: css,
     },
     {
       name: "Docker",
@@ -272,27 +266,7 @@ import {
       image: smart_pharm,
       source_code_link: "https://github.com/Victor-M16/Smart-Pharmacist",
     },
-    {
-      name: "Portfolio Website",
-      description:
-        "A personal portfolio showcasing my projects and professional skills, built with React and designed to highlight my background in full-stack development and systems engineering.",
-      tags: [
-        {
-          name: "reactjs",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "css",
-          color: "green-text-gradient",
-        },
-        {
-          name: "javascript",
-          color: "pink-text-gradient",
-        },
-      ],
-      image: portfolio,
-      source_code_link: "https://github.com/Victor-M16/card_portfolio",
-    },
+
     {
       name: "Valentine's Day Themed Website",
       description:
@@ -413,6 +387,7 @@ import {
     },
    
   ];
+  
   const moments=[
     {
       name: "",
