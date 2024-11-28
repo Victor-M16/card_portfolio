@@ -8,18 +8,17 @@ import {
     reactjs,
     tailwind,
     git,
-    phaet,
+
     django,
     python,
     mysql,
-    portfolio,
+
     trafficid,
     timetableapp,
     portfolio3d,
-    victor,
-    victorsmile,
-    sips_i,
-    sips_p,
+    victor, //anonymous picture
+
+
     sips_pi,
     frmt,
     docker,
@@ -27,6 +26,11 @@ import {
     phaet_info,
     valentine,
     facial_recognition,
+    lemonade,
+    escom,
+    mubas,
+    rydberg,
+    nextgen,
     
   } from "./assets";
   
@@ -111,22 +115,10 @@ import {
     
   const experiences = [
     {
-      title: "CEO & Fullstack Developer",
-      company_name: "Lemonade Systems",
-      icon: phaet,
-      iconBg: "#000000",
-      date: "Jan 2023 - Present",
-      points: [
-        "Founded and lead Lemonade Systems, managing business operations and spearheading technical development.",
-        "Developed and maintained web applications to showcase company information, including for clients such as Phaet Holdings Limited.",
-        "Collaborated closely with team members to design and implement core features that support customer engagement and client onboarding.",
-      ],
-    },
-    {
       title: "Software Engineer Intern",
       company_name: "Rydberg Starck Limited",
-      icon: phaet,
-      iconBg: "#000000",
+      icon: rydberg,
+      iconBg: "#FFFFFF",
       date: "July 2023 - July 2024",
       points: [
         "Designed and developed the Financial Revenue Management and Taxation (FRMT) system using Django, integrating mobile app functionality via RESTful APIs.",
@@ -138,20 +130,20 @@ import {
     {
       title: "Engineering Intern",
       company_name: "ESCOM",
-      icon: phaet,
-      iconBg: "#000000",
+      icon: escom,
+      iconBg: "#FFFFFF",
       date: "July 2023 - October 2023",
       points: [
-        "Optimized maintenance and repair workflows by using SCADA systems to monitor and manage grid distribution in Malawi’s southern region.",
+        "Optimized maintenance and repair workflows by using SCADA systems to monitor and manage power grid distribution in Malawi’s southern region.",
         "Assisted in real-time data tracking, reporting, and situational awareness for distribution and transmission line operations.",
-        "Explored the feasibility of GIS solutions for tracking transmission infrastructure, aiming to streamline maintenance activities.",
+        "Conducted requirements gathering of GIS solutions for tracking transmission infrastructure, aiming to streamline maintenance activities.",
       ],
     },
     {
       title: "Digital Malawi Hackathon Winner",
       company_name: "Team Sixth Sense - SIPS",
-      icon: phaet,
-      iconBg: "#000000",
+      icon: nextgen,
+      iconBg: "#FFFFFF",
       date: "February 2024",
       points: [
         "Developed Smarter Inventory and Procurement System (SIPS), an award-winning inventory management web application using Django and Next.js.",
@@ -161,15 +153,28 @@ import {
       ],
     },
     {
-      title: "Electronics and Systems Engineer",
+      title: "Electronics and Computer Engineer",
       company_name: "MUBAS Final Year Project - Smart Pharmacist System",
-      icon: phaet,
-      iconBg: "#000000",
+      icon: mubas,
+      iconBg: "#FFFFFF",
       date: "February 2024 - October 2024",
       points: [
-        "Developed a secure, real-time vending machine control system using Django and ESP32, focused on healthcare data privacy and low-latency communication.",
+        "With HIPAA compliance in mind, developed a secure, real-time vending machine control system using Django and ESP32, focused on healthcare data privacy and low-latency communication.",
         "Enabled remote prescription management by doctors, who could issue prescription codes sent to patients for medication retrieval at vending machines.",
         "Emphasized data security by enforcing HTTPS-based API communication and role-based authentication to restrict access to sensitive medical data.",
+      ],
+    },
+    {
+      title: "CEO & Systems Engineer",
+      company_name: "Lemonade Systems",
+      icon: lemonade,
+      iconBg: "#000000",
+      date: "Jan 2023 - Present",
+      points: [
+        "Founded and lead Lemonade Systems, managing business operations and spearheading technical development.",
+        "Architect, develop and maintain systems for various domains including education, energy and procurement and cyberseucirty.",
+        "Developing bwal0 and Lucy",
+        "Develop web applications to showcase company information, including for clients such as Phaet Holdings Limited.",
       ],
     },
   ];
@@ -178,10 +183,18 @@ import {
   const testimonials = [
     {
       testimonial:
-        "Victor is a driven individual and he takes his work seriously.",
-      name: "Vincent Kavala",
-      designation: "Teacher",
-      company: "Kalibu Academy",
+        "Victor works relentlessly to meet project deadlines. We love working together with him.",
+      name: "Yusuf Chimole",
+      designation: "CEO",
+      company: "Rydberg Starck Limited",
+      image: victor,
+    },
+    {
+      testimonial:
+        "I've never met a someone who cares about details like Victor and can explain complicated concepts with ease. He can be an engineer and a lecturer.",
+      name: "Emmanuel Mukondiya",
+      designation: "Transmission Supervisor",
+      company: "ESCOM",
       image: victor,
     },
     {
@@ -190,14 +203,6 @@ import {
       name: "Emmanuel Mjimapemba",
       designation: "CEO",
       company: "Phaet Holdings Limted",
-      image: victor,
-    },
-    {
-      testimonial:
-        "Victor works relentlessly to meet project deadlines. We love working together with him.",
-      name: "Yusuf Chimole",
-      designation: "CEO",
-      company: "Rydberg Starck Limited",
       image: victor,
     },
   ];
@@ -388,17 +393,5 @@ import {
    
   ];
   
-  const moments=[
-    {
-      name: "",
-      description:
-        "",
-      tags: [
-        
-      ],
-      image: victorsmile,
-      source_code_link: "https://github.com/Victor-M16",
-    },
-  ];
   
-  export { services, technologies, experiences, testimonials, projects,moments };
+  export { services, technologies, experiences, testimonials, projects };
