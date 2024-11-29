@@ -51,24 +51,20 @@ import {
   
   const services = [
     {
-      title: "Backend and API Developer",
-      icon: backend,
+      title: "Web and Mobile Developer",
+      icon: web,
     },
     {
-      title: "Natural Language Processing (AI) Researcher",
-      icon: web,
+      title: "Circuit Analysis and Design",
+      icon: backend,
     },
     {
       title: "Systems Architect",
       icon: creator,
     },
     {
-      title: "Mobile Developer",
+      title: "IoT engineer",
       icon: mobile,
-    },
-    {
-      title: "IoT and real-time systems engineer",
-      icon: creator,
     },
   ];
   
@@ -126,6 +122,7 @@ import {
         "FRMT successfully passed pilot testing with Nsanje District Council, enhancing transparency and revenue tracking.",
         "Partially migrated the FRMT system to a microservices architecture using Spring Boot, enhancing modularity and scalability.",
       ],
+      website:"https://rydbergstarck.com/",
     },
     {
       title: "Engineering Intern",
@@ -138,6 +135,7 @@ import {
         "Assisted in real-time data tracking, reporting, and situational awareness for distribution and transmission line operations.",
         "Conducted requirements gathering of GIS solutions for tracking transmission infrastructure, aiming to streamline maintenance activities.",
       ],
+      website:"https://www.escom.mw/",
     },
     {
       title: "Digital Malawi Hackathon Winner",
@@ -151,6 +149,7 @@ import {
         "Implemented a SARIMAX predictive model for inventory optimization, showing metrics like optimal order quantities and reorder points.",
         "Achieved compliance with Public-Private Partnership Commission (PPPC) procurement regulations, contributing to the project’s first-place win.",
       ],
+      website:"https://nxtgenlabs.mw/",
     },
     {
       title: "Electronics and Computer Engineer",
@@ -163,6 +162,7 @@ import {
         "Enabled remote prescription management by doctors, who could issue prescription codes sent to patients for medication retrieval at vending machines.",
         "Emphasized data security by enforcing HTTPS-based API communication and role-based authentication to restrict access to sensitive medical data.",
       ],
+      website:"https://www.mubas.ac.mw/",
     },
     {
       title: "CEO & Systems Engineer",
@@ -172,10 +172,11 @@ import {
       date: "Jan 2023 - Present",
       points: [
         "Founded and lead Lemonade Systems, managing business operations and spearheading technical development.",
-        "Architect, develop and maintain systems for various domains including education, energy and procurement and cyberseucirty.",
+        "Architect, develop and maintain systems for various domains including education, energy, procurement and cyberseucirty.",
         "Developing bwal0 and Lucy",
         "Develop web applications to showcase company information, including for clients such as Phaet Holdings Limited.",
       ],
+      website:"https://lemonade-systems.netlify.app/",
     },
   ];
   

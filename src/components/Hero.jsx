@@ -16,18 +16,19 @@ const Hero = () => {
         variants={fadeIn("up","spring", 0.5, 0.75)}
         >
         <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#915eff]"/>
-          <div className="w-1 sm:h-80 h-40 violet-gradient"/>
+          {/* <div className="w-5 h-5 rounded-full bg-[#915eff]"/> */}
+          <div className="w-5 h-5 rounded-full bg-[#f7bd25]"/>
+          <div className="w-1 sm:h-80 h-40 gold-gradient"/>
         </div>
       </motion.div>
       
       <motion.div variants={textVariant()}>
       <div>
           <h1 className={`${styles.heroHeadText} text-white`}>Hi, I'm <span 
-          className="text-[#915eff]">Victor</span></h1>
+          className="text-[#f7bd25]">Victor</span></h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-          I engineer and develop real time information systems. <br className="sm:block hidden"/>
-          I also perform business analytics.<span className={`${styles.sectionSubText}text-[#915eff]`}>Scroll or Swipe to begin</span>         
+          I design and develop real time information and control systems. <br className="sm:block hidden"/>
+          I also perform electrical engineering services.       
           </p>
         </div>     
       </motion.div>
@@ -42,10 +43,6 @@ const Hero = () => {
         <a href="#about"> 
         <div className="w-[70px] h-[120px] rounded-3xl border-4 border-secondary
            flex justify-center items-start p-1">
-
-    
-
-
 
           <div className="w-[25px] h-[45px] rounded-3xl border-2 border-secondary
            flex justify-center items-start p-2">

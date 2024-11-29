@@ -11,7 +11,9 @@
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
   color-scheme: dark;
+  overflow-x: hidden;
 }
+
 
 .hash-span {
   margin-top: -100px;
@@ -40,6 +42,16 @@
     -90deg,
     #804dee 0%,
     rgba(60, 51, 80, 0) 100%
+  );
+}
+
+.gold-gradient {
+  background: #f7bd25;
+  background: linear-gradient(-90deg, #f7bd25 80%, rgba(129, 123, 106, 0.7) 100%);
+  background: -webkit-linear-gradient(
+    -90deg,
+    #f7bd25 80%,
+    rgba(218, 218, 216, 0.7) 100%
   );
 }
 

@@ -67,22 +67,10 @@ const About = () => {
         className='mt-4 text-secondary text-[17px]
         max-w-3xl leading-[30px]'
       >
-        I'm a multi-award winning electronics and computer engineer with experience building both monolithic and microservice based systems. 
-        My technology stack includes Java, Python, JavaScript, Arduino language, and PostgreSQL among others. 
-        
-        My passion lies in leveraging technology to solve real world business problems such as process optimization, and more importantly,
-        social problems such as the digital and literacy divide.
-
-        With me, you are not just getting a competent developer, you are getting an empathetic one who will go 
-        above and beyond to make sure your needs are met.
-
-        I have a track record of meeting project deadlines and creating innovative solutions that display both my
-        passion for the craft of software engineering as well as my humanitarian need to improve the lives of the less fortunate.
-
-        I am a fast learner, who believes in being meticulous and leveraging team-work to build solutions that matter.
-        I take a client-first approach to produce compliant, performant, scalable and maintainable user-friendly solutions.
-
-        Let's be more, together!
+I am Victor Mjimapemba: an engineer who turns code, circuits and designs into catalysts for change.
+I transform complex challenges into elegant solutions, blending technical mastery with humanitarian vision. My work isn't just about technology—it's about unlocking human potential.
+When you collaborate with me, you're not just hiring an engineer. You're igniting possibility.
+Let's redefine what's possible, together.
       </motion.p>
       <div className='mt-20 flex flex-wrap gap-10'>
         {services.map((service, index) => (
