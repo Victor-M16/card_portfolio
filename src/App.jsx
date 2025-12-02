@@ -10,6 +10,7 @@ import {
   Tech,
   Works,
   Companies,
+  Dashboard
 } from "./components";
 
 const App = () => {
@@ -17,7 +18,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="relative z-0 bg-primary">
+      <div className="relative z-0 bg-primary overflow-hidden">
         {videoError ? (
           // Fallback Background
           <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
@@ -26,9 +27,14 @@ const App = () => {
           </div>
         ) : (
           // Video Background
-          <div className="relative w-full h-screen">
+          <div className="relative w-full h-screen overflow-hidden">
+             <div className="relative z-10">
+              <Navbar />
+              <Hero />
+            </div>
+            
             <video
-              className="absolute top-0 left-0 w-full h-full object-cover"
+              className="absolute top-0 left-0 w-full h-screen object-cover overflow-hidden"
               src="/introvid.mp4"
               autoPlay
               loop
@@ -36,22 +42,22 @@ const App = () => {
               playsInline
               onError={() => setVideoError(true)} // Set error state on video load failure
             />
-            <div className="relative z-10">
-              <Navbar />
-              <Hero />
-            </div>
           </div>
         )}
-
-        <About />
-        <Companies />
-        <Experience />
-        <Tech />
-        <Works />
-
-        <div className="relative z-0">
+        <div className="relative w-full h-screen">
+          <About />
+          <Companies />
+          <Experience />
+          <Tech />
+          <Works />
+          {/* <Dashboard /> */}
           <Contact />
         </div>
+
+
+        {/* <div className="relative z-0">
+          <Contact />
+        </div> */}
       </div>
     </BrowserRouter>
   );

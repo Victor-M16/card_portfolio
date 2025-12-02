@@ -6,7 +6,7 @@ import { SectionWrapper } from "../hoc";
 
 const Companies = () => {
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full">
       <p className={`${styles.sectionSubText} text-center mb-4`}>
         Great People I have worked with
       </p>

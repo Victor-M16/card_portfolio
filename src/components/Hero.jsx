@@ -7,7 +7,7 @@ import { fadeIn, textVariant } from "../utils/motion";
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen mx-auto">
+    <section className="relative w-full h-screen mx-auto overflow-hidden">
 
       <div className={`${styles.paddingX} absolute inset-0 top-[15px]
       max-w-7xl mx-auto flex flex-row items-start gap-5`}>
@@ -23,7 +23,7 @@ const Hero = () => {
       </motion.div>
       
       <motion.div variants={textVariant()}>
-      <div>
+      <div className="overflow-hidden">
           <h1 className={`${styles.heroHeadText} text-white`}>Hi, I'm <span 
           className="text-[#f7bd25]">Victor</span></h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
@@ -38,10 +38,10 @@ const Hero = () => {
 
 
       
-      <div className="absolute mt-80 w-full
-      flex justify-center items-center">
+      <div className="absolute bottom-20 w-full
+      flex justify-center items-center overflow-hidden">
         <a href="#about"> 
-        <div className="w-[70px] h-[120px] rounded-3xl border-4 border-secondary
+        <div className="w-[70px] h-[100px] rounded-3xl border-4 border-secondary
            flex justify-center items-start p-1">
 
           <div className="w-[25px] h-[45px] rounded-3xl border-2 border-secondary
