@@ -19,12 +19,17 @@ import threejs from "./tech/threejs.svg";
 import django from "./tech/django.png";
 import python from "./tech/python.png";
 import mysql from "./tech/mysql.png";
+import csharp from "./tech/csharp.png";
+import nextjs from "./tech/nextjs.png";
+import postgresql from "./tech/postgresql.png";
 
 import mubas from "./company/mubas.png";
 import lemonade from "./company/logo.svg";
 import nextgen from "./company/nextgen.png";
 import rydberg from "./company/rydberg.png";
 import escom from "./company/escom.jpeg";
+// import fcb from "./company/fcb.png";
+import fcb from "./company/fcb.jpg";
 
 import portfolio3d from "./portfolio3d.png";
 import trafficid from "./trafficid.png";
@@ -47,6 +52,7 @@ export {
   creator,
   mobile,
   web,
+
   github,
   menu,
   close,
@@ -62,11 +68,15 @@ export {
   django,
   python,
   mysql,
+  csharp,
+  nextjs,
+  postgresql,
+
+
   trafficid,
   timetableapp,
   portfolio3d,
   victor,
-
   sips_i,
   sips_p,
   sips_pi,
@@ -75,10 +85,13 @@ export {
   phaet_info,
   smart_pharm,
   facial_recognition,
+
+
   mubas,
   lemonade,
   rydberg,
   nextgen,
   escom,
+  fcb,
 };
 

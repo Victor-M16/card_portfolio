@@ -4,14 +4,22 @@ import {
     creator,
     web,
     javascript,
+    typescript,
     html,
     reactjs,
     tailwind,
     git,
+    nextjs,
+
+
+    csharp,
 
     django,
     python,
+
+    postgresql,
     mysql,
+
 
     trafficid,
     timetableapp,
@@ -31,6 +39,7 @@ import {
     mubas,
     rydberg,
     nextgen,
+    fcb,
     
   } from "./assets";
   
@@ -47,6 +56,10 @@ import {
       id: "contact",
       title: "Contact",
     },
+    // {
+    //   id: "dashboard",
+    //   title: "Dashboard",
+    // },
   ];
   
   const services = [
@@ -86,8 +99,8 @@ import {
       icon: python,
     },
     {
-      name: "JavaScript",
-      icon: javascript,
+      name: "TypeScript",
+      icon: typescript,
     },
     {
       name: "React JS",
@@ -102,11 +115,19 @@ import {
       icon: git,
     },
     {
-      name: "mySQL",
-      icon: mysql,
+      name: "PostgreSQL",
+      icon: postgresql,
+    },
+    {
+      name: "C-sharp",
+      icon: csharp,
+    },
+    { name: "Next JS",
+      icon: nextjs,
     },
 
   ];
+
 
     
   const experiences = [
@@ -178,8 +199,24 @@ import {
       ],
       website:"https://lemonade-systems.netlify.app/",
     },
-  ];
+    {
+      title: "Graduate (Management) Trainee",
+      company_name: "First Capital Bank Malawi",
+      icon: fcb,
+      iconBg: "#ffffff",
+      date: "Feb 2025 - Present",
+      points: [
+        "Rotated through various departments including Retail Banking, Corporate Banking, Credit Risk, and Operations to gain comprehensive banking knowledge.",
+        "Assisted in evaluating loan applications, conducting market research, and supporting daily banking operations.",
+        "Participated in training sessions on financial products, regulatory compliance, and customer service excellence.",
+        "Collaborated with cross-functional teams to improve banking processes and enhance customer experience.",
+        "Developed various internal tools to automate routine tasks, improving efficiency within the bank.",
+      ],
+      website:"https://www.firstcapitalbank.co.mw/",
+    },
+  ].reverse();
   
+
   
   const testimonials = [
     {
@@ -393,6 +430,6 @@ import {
     },
    
   ];
-  
-  
+
+
   export { services, technologies, experiences, testimonials, projects };

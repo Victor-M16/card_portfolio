@@ -13,7 +13,7 @@ const Tech = () => {
 
       <div className="relative w-full overflow-hidden">
         <motion.div
-          className="flex flex-row gap-8 md:gap-12 inline-flex items-center"
+          className="flex-row gap-8 md:gap-12 inline-flex items-center"
           style={{ 
             display: "inline-flex",
             width: "200%", // Double the width to ensure continuous scrolling

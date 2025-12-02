@@ -1,88 +1,3 @@
-// import React from "react";
-// import {
-//   VerticalTimeline,
-//   VerticalTimelineElement,
-// } from "react-vertical-timeline-component";
-// import { motion } from "framer-motion";
-
-// import "react-vertical-timeline-component/style.min.css";
-
-// import { styles } from "../styles";
-// import { experiences } from "../constants";
-// import { SectionWrapper } from "../hoc";
-// import { textVariant } from "../utils/motion";
-
-// const ExperienceCard = ({ experience }) => {
-//   return (
-//     <VerticalTimelineElement
-//       contentStyle={{
-//         background: "#1d1836",
-//         color: "#fff",
-//       }}
-//       contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-//       date={experience.date}
-//       iconStyle={{ background: experience.iconBg }}
-//       icon={
-//         <div className='flex justify-center items-center w-full h-full'>
-//           <img
-//             src={experience.icon}
-//             alt={experience.company_name}
-//             className='w-full h-full object-contain'
-//           />
-//         </div>
-//       }
-//     >
-//       <div>
-//         <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
-//         <p
-//           className='text-secondary text-[16px] font-semibold'
-//           style={{ margin: 0 }}
-//         >
-//           {experience.company_name}
-//         </p>
-//       </div>
-
-//       <ul className='mt-5 list-disc ml-5 space-y-2'>
-//         {experience.points.map((point, index) => (
-//           <li
-//             key={`experience-point-${index}`}
-//             className='text-white-100 text-[14px] pl-1 tracking-wider'
-//           >
-//             {point}
-//           </li>
-//         ))}
-//       </ul>
-//     </VerticalTimelineElement>
-//   );
-// };
-
-// const Experience = () => {
-//   return (
-//     <>
-//       <motion.div variants={textVariant()}>
-//         <h2 className={`${styles.sectionHeadText} text-center`}>
-//           Work Experience.
-//         </h2>
-//       </motion.div>
-
-//       <div className='mt-10 flex flex-col'>
-//         <VerticalTimeline>
-//           {experiences.map((experience, index) => (
-//             <ExperienceCard
-//               key={`experience-${index}`}
-//               experience={experience}
-//             />
-//           ))}
-//         </VerticalTimeline>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default SectionWrapper(Experience, "work");
-
-
-import React from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -92,11 +7,20 @@ import { motion } from "framer-motion";
 import "react-vertical-timeline-component/style.min.css";
 
 import { styles } from "../styles";
-import { experiences } from "../constants";
+import { experiences} from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
+import { useEffect, useState } from "react";
+
+
+
+
+
+// var experiences = []
 
 const ExperienceCard = ({ experience }) => {
+
+
   return (
     <VerticalTimelineElement
       contentStyle={{
@@ -119,20 +43,24 @@ const ExperienceCard = ({ experience }) => {
       }}
       icon={
         <div className='flex justify-center items-center w-full h-full p-2'>
+          <a href={experience.website}>
           <img
             src={experience.icon}
             alt={experience.company_name}
             className='w-full h-full object-contain rounded-full'
           />
+          </a>
         </div>
       }
     >
       <div className="space-y-2">
-        <h3 className='text-white text-xl md:text-2xl font-bold'>
+        <h3 className='text-white text-xl md:text-xl font-bold'>
           {experience.title}
         </h3>
         <p className='text-secondary text-base font-semibold'>
+          <a href={experience.website}>
           {experience.company_name}
+          </a>
         </p>
       </div>
 
@@ -151,6 +79,20 @@ const ExperienceCard = ({ experience }) => {
 };
 
 const Experience = () => {
+  // const [experiences, setExperiences] = useState(experiences);
+  // useEffect(() => {
+  //   async function fetchExperiences() {
+  //     try {
+  //       const response = await fetch('http://127.0.0.1:8000/api/experiences/');
+  //       const data = await response.json();
+  //       setExperiences(data);
+  //     } catch (error) {
+  //       console.error('Error fetching experiences:', error);
+  //     }
+  //   }
+  //   fetchExperiences();
+  // }, []);
+  
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
