@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Anchor id used by the navbar links (e.g. "about" → /#about). */
+  id?: string;
+}
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<section class:list={["relative mx-auto max-w-7xl px-6 py-10 sm:px-16 sm:py-16", className]} {...rest}>
+  <slot />
+</section>

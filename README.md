@@ -1,84 +1,50 @@
-# Card Portfolio
+# Victor Mjimapemba: Portfolio & Blog
 
-This is my personal portfolio website built with **React** and **Vite**, showcasing my projects, experience, and skills. The website is designed to be interactive, visually engaging, and responsive. It uses modern web technologies like React, Vite for fast development, Tailwind CSS for styling, and Three.js for 3D components.
+My personal site: who I am, what I've built, and a blog where I write about it.
 
----
+Built with [Astro](https://astro.build), TypeScript and Tailwind CSS, and deployed on [Vercel](https://vercel.com). Pages are pre-rendered to static HTML. The only server code is the contact form, which runs as a Vercel function and sends email through [Resend](https://resend.com).
 
-## Features
+## Getting started
 
-- **Interactive UI**: Engaging UI with animations powered by [Framer Motion](https://www.framer.com/motion/) and 3D components using [React Three Fiber](https://github.com/utsuboco/react-three-fiber).
-- **Responsive Design**: Fully responsive layout, optimized for mobile and desktop views.
-- **Contact Form**: Integrated with [EmailJS](https://www.emailjs.com/) to allow users to send messages directly from the website.
-- **Timeline Component**: Uses [react-vertical-timeline-component](https://github.com/stephane-monnot/react-vertical-timeline) to display my journey in a visual timeline format.
+Requires Node.js 22.12+ (production uses Node 24).
 
----
+```bash
+npm install
+cp .env.example .env   # then fill in RESEND_API_KEY to test the contact form
+npm run dev            # http://localhost:4321
+```
 
-## Tech Stack
+| Command          | What it does                                         |
+| ---------------- | ---------------------------------------------------- |
+| `npm run dev`    | Dev server with hot reload. Draft posts are visible. |
+| `npm run build`  | Production build (static pages + Vercel function).   |
+| `npm run check`  | Type-checks `.astro`, `.ts` and `.tsx` files.        |
+| `npm run lint`   | ESLint, including accessibility rules.               |
+| `npm run format` | Formats everything with Prettier.                    |
+| `npm run verify` | Lint, format check, type check and build in one go.  |
 
-- **React**: A popular JavaScript library for building user interfaces.
-- **Vite**: A fast build tool and development server for modern web applications.
-- **Tailwind CSS**: A utility-first CSS framework for fast styling.
-- **Three.js**: A JavaScript library for 3D graphics, used with [React Three Fiber](https://github.com/utsuboco/react-three-fiber) for interactive 3D content.
-- **Framer Motion**: A library for animation and transitions in React apps.
-- **React Router**: For navigating between different pages.
-- **EmailJS**: For handling contact form submissions.
+## Writing a blog post
 
----
+Add a Markdown (`.md`) or MDX (`.mdx`) file to `src/content/blog/`. The file name becomes the URL. See [`src/content/blog/writing-a-post.md`](src/content/blog/writing-a-post.md) for the frontmatter fields and a cheat sheet. Posts with `draft: true` only show up in `npm run dev`.
 
-## Installation
+Every post gets its own page, tag pages, an entry in the RSS feed (`/rss.xml`) and the sitemap, and social preview tags so links look good when shared.
 
-### Prerequisites
+## Updating portfolio content
 
-Before you begin, make sure you have the following installed:
+Content lives in typed data files in `src/data/`: experience, projects, tech skills, services, and site-wide settings like nav links. Images go in `src/assets/` and are imported from those files, which lets Astro resize and convert them automatically.
 
-- [Node.js](https://nodejs.org/en/) (preferably version 18+)
-- [npm](https://www.npmjs.com/) (comes with Node.js)
+## Deploying to Vercel
 
-### Steps to Run the Project Locally
+1. Import the repository in Vercel. The Astro preset is detected automatically.
+2. In **Project → Settings → Environment Variables**, add `RESEND_API_KEY` (create one at [resend.com/api-keys](https://resend.com/api-keys)).
+3. Optional: `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` (needs a domain verified in Resend) and `SITE_URL` once you have a custom domain. See [`.env.example`](.env.example).
 
-1. **Clone the repository**:
+Without a verified domain, Resend's shared `onboarding@resend.dev` sender can only deliver to the email address on your Resend account, so sign up to Resend with the address you want messages delivered to.
 
-   ```bash
-   git clone https://github.com/Victor-M16/card_portfolio.git
-   cd card_portfolio
-   ```
+## History
 
-2. **Install the dependencies**:
-
-   ```bash
-   npm install
-   ```
-
-3. **Run the development server**:
-
-   To start the project locally and view it in your browser, run:
-
-   ```bash
-   npm run dev
-   ```
-
-   The application will be accessible at `http://localhost:5173`.
-
-4. **Build the application for production**:
-
-   If you're ready to deploy the app, build it using:
-
-   ```bash
-   npm run build
-   ```
-
-   The production build will be available in the `dist/` folder.
-
-5. **Preview the production build**:
-
-   To preview the production build locally, use:
-
-   ```bash
-   npm run preview
-   ```
-
----
+This started as a React + three.js portfolio built from a YouTube tutorial. The last version of that is the `master` branch as of commit `5e03f46`. Unused 3D models and the original hero video are kept in [`archive/`](archive/).
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+MIT

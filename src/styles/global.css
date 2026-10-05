@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #050816;
+  --color-secondary: #aaa6c3;
+  --color-tertiary: #151030;
+  --color-black-100: #100d25;
+  --color-black-200: #090325;
+  --color-white-100: #f3f3f3;
+  --color-gold: #f7bd25;
+
+  --shadow-card: 0px 35px 120px -15px #211e35;
+
+  --breakpoint-xs: 450px;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    /* Keeps anchor targets clear of the fixed navbar. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-primary font-sans text-white antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold;
+  }
+}
+
+@utility section-sub {
+  @apply text-[14px] tracking-wider text-secondary uppercase sm:text-[18px];
+}
+
+@utility section-head {
+  @apply text-[30px] font-black text-white xs:text-[40px] sm:text-[50px] md:text-[60px];
+}
+
+@utility gold-gradient {
+  background: linear-gradient(180deg, #f7bd25 80%, rgba(129, 123, 106, 0.7) 100%);
+}
+
+@utility black-gradient {
+  background: linear-gradient(to right, #434343, #000000);
+}
+
+@utility green-pink-gradient {
+  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+}
+
+@utility text-gradient-blue {
+  background: linear-gradient(to top, #2f80ed, #56ccf2);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-green {
+  background: linear-gradient(to top, #11998e, #38ef7d);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-pink {
+  background: linear-gradient(to top, #ec008c, #fc6767);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-yellow {
+  background: linear-gradient(to top, #f12711, #f5af19);
+  background-clip: text;
+  color: transparent;
+}
+
+/* Scroll-reveal: elements start hidden only once JS has marked the page, so
+   content is always visible without JavaScript. See src/scripts/reveal.ts. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal="left"] {
+  transform: translateX(-3rem);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Infinite logo marquee: the track holds the list twice and slides by half. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-cue {
+  50% {
+    transform: translateY(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .marquee-track,
+  .animate-scroll-cue {
+    animation: none;
+  }
+}

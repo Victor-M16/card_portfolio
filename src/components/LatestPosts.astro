@@ -1,0 +1,28 @@
+---
+import PostCard from "@/components/PostCard.astro";
+import Section from "@/components/Section.astro";
+import { getPosts } from "@/lib/blog";
+
+const posts = (await getPosts()).slice(0, 3);
+---
+
+{posts.length > 0 && (
+  <Section id="blog" aria-labelledby="latest-posts-heading">
+    <div data-reveal>
+      <p class="section-sub">Writing</p>
+      <h2 id="latest-posts-heading" class="section-head">
+        Latest posts.
+      </h2>
+    </div>
+    <ul class="mt-12 grid list-none gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {posts.map((post, index) => (
+        <li data-reveal data-reveal-delay={index * 150}>
+          <PostCard post={post} />
+        </li>
+      ))}
+    </ul>
+    <a href="/blog" class="text-gold mt-8 inline-block font-medium hover:underline">
+      All posts →
+    </a>
+  </Section>
+)}
