@@ -1,14 +1,10 @@
 ---
-import { Image } from "astro:assets";
+import ProjectCard from "@/components/ProjectCard.astro";
 import Section from "@/components/Section.astro";
-import { projects, type TagColor } from "@/data/projects";
+import { projects } from "@/data/projects";
 
-const tagClass: Record<TagColor, string> = {
-  blue: "text-gradient-blue",
-  green: "text-gradient-green",
-  pink: "text-gradient-pink",
-  yellow: "text-gradient-yellow",
-};
+const featured = projects.filter((project) => project.featured);
+const earlier = projects.filter((project) => !project.featured);
 ---
 
 <Section id="projects">
@@ -23,72 +19,33 @@ const tagClass: Record<TagColor, string> = {
     to solve complex business problems, work with different technologies, and manage projects effectively.
   </p>
 
-  <ul class="mt-20 grid list-none gap-7 sm:grid-cols-2 lg:grid-cols-3">
-    {projects.map((project, index) => (
+  <ul class="mt-16 grid list-none gap-7 sm:grid-cols-2 lg:grid-cols-3">
+    {featured.map((project, index) => (
       <li data-reveal data-reveal-delay={(index % 3) * 150}>
-        <article class="bg-tertiary flex h-full flex-col rounded-2xl p-5" data-tilt>
-          <div class="relative h-[230px] w-full">
-            <Image
-              src={project.image}
-              alt={`Screenshot of ${project.name}`}
-              width={720}
-              widths={[400, 720]}
-              sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
-              class="size-full rounded-2xl object-cover"
-            />
-            <div class="absolute inset-0 m-3 flex justify-end gap-2">
-              {project.sourceUrl && (
-                <a
-                  href={project.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="black-gradient flex size-10 items-center justify-center rounded-full"
-                  aria-label={`Source code for ${project.name} on GitHub`}
-                >
-                  <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z" />
-                  </svg>
-                </a>
-              )}
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="black-gradient flex size-10 items-center justify-center rounded-full"
-                  aria-label={`Live demo of ${project.name}`}
-                >
-                  <svg
-                    class="size-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"
-                    />
-                  </svg>
-                </a>
-              )}
-            </div>
-          </div>
-
-          <div class="mt-5 flex-1">
-            <h3 class="text-[24px] font-bold text-white">{project.name}</h3>
-            <p class="text-secondary mt-2 text-[14px]">{project.description}</p>
-          </div>
-
-          <ul class="mt-4 flex list-none flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <li class:list={["text-[14px]", tagClass[tag.color]]}>#{tag.name}</li>
-            ))}
-          </ul>
-        </article>
+        <ProjectCard project={project} />
       </li>
     ))}
   </ul>
+
+  {earlier.length > 0 && (
+    <div class="mt-16" data-reveal>
+      <h3 class="text-2xl font-bold text-white">Earlier work</h3>
+      <ul class="mt-6 grid list-none gap-4 sm:grid-cols-2">
+        {earlier.map((project) => (
+          <li class="bg-tertiary/60 rounded-xl p-4">
+            <p class="font-semibold text-white">
+              {project.sourceUrl ? (
+                <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" class="hover:text-gold">
+                  {project.name} ↗
+                </a>
+              ) : (
+                project.name
+              )}
+            </p>
+            <p class="text-secondary mt-1 text-sm">{project.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
 </Section>

@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Section from "@/components/Section.astro";
+import { interests } from "@/data/credentials";
 import { services } from "@/data/services";
 ---
 
@@ -16,6 +17,15 @@ import { services } from "@/data/services";
     about technology—it's about unlocking human potential. When you collaborate with me, you're not just hiring an
     engineer. You're igniting possibility. Let's redefine what's possible, together.
   </p>
+
+  <div class="mt-6 flex flex-wrap items-center gap-3" data-reveal data-reveal-delay="200">
+    <span class="text-white-100 text-sm font-medium">Currently exploring:</span>
+    <ul class="flex list-none flex-wrap gap-2" aria-label="Areas of interest">
+      {interests.map((interest) => (
+        <li class="bg-tertiary text-gold rounded-full px-3 py-1 text-sm">{interest}</li>
+      ))}
+    </ul>
+  </div>
 
   <ul class="mt-12 flex list-none flex-wrap gap-10">
     {services.map((service, index) => (

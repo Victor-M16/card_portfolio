@@ -15,14 +15,31 @@ export interface Project {
   name: string;
   description: string;
   tags: { name: string; color: TagColor }[];
-  image: ImageMetadata;
+  /** Screenshot or photo. Without one, the card shows a styled title panel. */
+  image?: ImageMetadata;
+  /** Shown as a gold badge, e.g. a competition win. */
+  award?: string;
   /** GitHub repository. Omit for closed-source projects. */
   sourceUrl?: string;
-  /** Live demo or case study. */
+  /** Live demo, case study or blog post. */
   liveUrl?: string;
+  /** Featured projects get full cards; the rest are listed under "Earlier work". */
+  featured?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    name: "Lucy",
+    description:
+      "A voice assistant anyone in Malawi can reach with an ordinary phone call, in Chichewa or English. No app, no internet, no reading required. Runs on a self-hosted phone line with open speech recognition on CPU.",
+    tags: [
+      { name: "voice-ai", color: "blue" },
+      { name: "chichewa", color: "green" },
+      { name: "asterisk", color: "pink" },
+    ],
+    liveUrl: "/blog/lucy-picked-up-the-phone/",
+    featured: true,
+  },
   {
     name: "Smarter Inventory and Procurement System (SIPS)",
     description:
@@ -33,23 +50,40 @@ export const projects: Project[] = [
       { name: "raspberrypi", color: "pink" },
     ],
     image: sips,
+    award: "1st place, Digital Malawi Hackathon",
     sourceUrl: "https://github.com/Victor-M16/Stores-Management",
+    featured: true,
   },
   {
     name: "Financial Revenue Management and Taxation System (FRMT)",
     description:
-      "FRMT is a Django-based application enabling councils, entities, and citizens to manage financial transactions with real-time tracking, multi-tenancy, and role-based authentication, improving transparency and revenue management.",
+      "FRMT is a Django-based application enabling councils, entities, and citizens to manage financial transactions with real-time tracking, multi-tenancy, and role-based authentication, improving transparency and revenue management. Piloted with Nsanje District Council.",
     tags: [
       { name: "django", color: "blue" },
-      { name: "javascript", color: "green" },
+      { name: "flutter", color: "green" },
       { name: "springboot", color: "yellow" },
     ],
     image: frmt,
+    featured: true,
   },
   {
-    name: "Smart Pharmacist System",
+    name: "Facial Recognition Access Control and Surveillance System (FRACS)",
     description:
-      "A secure, real-time vending machine control system for medication dispensation, utilizing an ESP32 and Django API. It allows doctors to remotely manage prescriptions and sends patients an access code for medication retrieval at the vending machine.",
+      "A real-time access control and surveillance system. A Raspberry Pi runs face recognition with OpenCV, an ESP32 drives the servo that opens the door, and a Flask web portal lets users manage the system.",
+    tags: [
+      { name: "opencv", color: "blue" },
+      { name: "raspberrypi", color: "green" },
+      { name: "esp32", color: "pink" },
+    ],
+    image: facialRecognition,
+    award: "1st place, Starck Innovation Awards 2024",
+    sourceUrl: "https://github.com/Victor-M16/Facial-Recognition-Access-Control-System",
+    featured: true,
+  },
+  {
+    name: "Smart Pharmacist Vending Machine",
+    description:
+      "A secure, real-time vending machine control system for dispensing medication, designed with HIPAA in mind. A doctor enters a prescription, the patient receives an SMS with a code, and the machine (ESP32 + Django API, prototyped in Fusion 360) dispenses exactly what was prescribed.",
     tags: [
       { name: "django", color: "blue" },
       { name: "esp32", color: "green" },
@@ -57,6 +91,18 @@ export const projects: Project[] = [
     ],
     image: smartPharm,
     sourceUrl: "https://github.com/Victor-M16/Smart-Pharmacist",
+    featured: true,
+  },
+  {
+    name: "Phaet Informational Website",
+    description: "An informational website for Phaet Holdings Limited, my first client.",
+    tags: [
+      { name: "html", color: "blue" },
+      { name: "css", color: "green" },
+      { name: "js", color: "pink" },
+    ],
+    image: phaetInfo,
+    sourceUrl: "https://github.com/Victor-M16/PHAET",
   },
   {
     name: "Valentine's Day Themed Website",
@@ -69,29 +115,6 @@ export const projects: Project[] = [
     ],
     image: valentine,
     // TODO: add the real repository link (the old one was a "your-username" placeholder).
-  },
-  {
-    name: "Facial Recognition Access Control System",
-    description:
-      "An automatic real-time security system developed using Flask, Raspberry Pi, and ESP32, which uses facial recognition to manage access control based on user identification.",
-    tags: [
-      { name: "flask", color: "blue" },
-      { name: "raspberrypi", color: "green" },
-      { name: "esp32", color: "pink" },
-    ],
-    image: facialRecognition,
-    sourceUrl: "https://github.com/Victor-M16/Facial-Recognition-Access-Control-System",
-  },
-  {
-    name: "Phaet Informational Website",
-    description: "An informational website for Phaet Holdings Limited, my first client.",
-    tags: [
-      { name: "html", color: "blue" },
-      { name: "css", color: "green" },
-      { name: "js", color: "pink" },
-    ],
-    image: phaetInfo,
-    sourceUrl: "https://github.com/Victor-M16/PHAET",
   },
   {
     name: "Traffic Signs Recognition System",

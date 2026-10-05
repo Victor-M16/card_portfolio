@@ -6,6 +6,8 @@ export const site = {
     "Systems engineer and founder of Lemonade Systems. I design and build real-time information and control systems, and write about what I learn along the way.",
   email: "vcmjimapemba@gmail.com",
   github: "https://github.com/Victor-M16",
+  linkedin: "https://www.linkedin.com/in/victor-mjimapemba/",
+  medium: "https://medium.com/@vcmjimapemba",
   locale: "en",
 } as const;
 

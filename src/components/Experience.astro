@@ -19,19 +19,26 @@ import { experiences } from "@/data/experiences";
           <Image src={experience.logo} alt="" width={64} height={64} class="size-full rounded-full object-contain" />
         </a>
 
-        <p class="text-secondary mb-2 text-sm font-medium">{experience.date}</p>
         <article class="rounded-xl bg-[#1d1836] p-6 shadow-md">
-          <h3 class="text-xl font-bold text-white">{experience.title}</h3>
-          <p class="text-secondary mt-1 text-base font-semibold">
+          <h3 class="text-secondary text-base font-semibold">
             <a href={experience.website} target="_blank" rel="noopener noreferrer" class="hover:text-white">
               {experience.company}
             </a>
-          </p>
-          <ul class="mt-4 ml-5 list-disc space-y-2">
-            {experience.points.map((point) => (
-              <li class="text-white-100 pl-1 text-sm tracking-wider">{point}</li>
+          </h3>
+
+          <ol class="mt-3 list-none space-y-6">
+            {experience.roles.map((role, index) => (
+              <li class:list={[index > 0 && "border-t border-white/10 pt-6"]}>
+                <p class="text-lg font-bold text-white sm:text-xl">{role.title}</p>
+                <p class="text-secondary mt-1 text-sm font-medium">{role.date}</p>
+                <ul class="mt-4 ml-5 list-disc space-y-2">
+                  {role.points.map((point) => (
+                    <li class="text-white-100 pl-1 text-sm tracking-wider">{point}</li>
+                  ))}
+                </ul>
+              </li>
             ))}
-          </ul>
+          </ol>
         </article>
       </li>
     ))}
