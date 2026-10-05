@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths } from "astro";
+import PostCard from "@/components/PostCard.astro";
+import Section from "@/components/Section.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getPosts, slugifyTag, type Post } from "@/lib/blog";
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  const byTag = new Map<string, { label: string; posts: Post[] }>();
+  for (const post of posts) {
+    for (const label of post.data.tags) {
+      const slug = slugifyTag(label);
+      const group = byTag.get(slug) ?? { label, posts: [] };
+      group.posts.push(post);
+      byTag.set(slug, group);
+    }
+  }
+  return [...byTag].map(([tag, group]) => ({ params: { tag }, props: group }));
+}) satisfies GetStaticPaths;
+
+const { label, posts } = Astro.props;
+---
+
+<BaseLayout title={`Posts tagged #${label}`} description={`Blog posts about ${label}.`}>
+  <Section class="pt-32">
+    <a href="/blog" class="text-secondary hover:text-white">
+      ← All posts
+    </a>
+    <h1 class="section-head mt-4">#{label}</h1>
+    <ul class="mt-12 grid list-none gap-8 md:grid-cols-2">
+      {posts.map((post) => (
+        <li>
+          <PostCard post={post} />
+        </li>
+      ))}
+    </ul>
+  </Section>
+</BaseLayout>

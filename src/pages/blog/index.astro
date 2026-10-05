@@ -1,0 +1,50 @@
+---
+import PostCard from "@/components/PostCard.astro";
+import Section from "@/components/Section.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getPosts, slugifyTag } from "@/lib/blog";
+
+const posts = await getPosts();
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout title="Blog" description="Notes on building systems, engineering, and starting a company in Malawi.">
+  <Section class="pt-32">
+    <p class="section-sub">Writing</p>
+    <h1 class="section-head">Blog.</h1>
+    <p class="text-secondary mt-4 max-w-3xl text-[17px] leading-[30px]">
+      Notes on what I'm building, what broke, and what I learned fixing it.
+      <a href="/rss.xml" class="text-gold underline">
+        Subscribe via RSS
+      </a>
+      .
+    </p>
+
+    {tags.length > 0 && (
+      <ul class="mt-8 flex list-none flex-wrap gap-3" aria-label="Tags">
+        {tags.map((tag) => (
+          <li>
+            <a
+              href={`/blog/tags/${slugifyTag(tag)}/`}
+              class="bg-tertiary text-secondary rounded-full px-4 py-1 text-sm hover:text-white"
+            >
+              #{tag}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {posts.length === 0 ? (
+      <p class="text-secondary mt-16">The first posts are on their way.</p>
+    ) : (
+      <ul class="mt-12 grid list-none gap-8 md:grid-cols-2">
+        {posts.map((post) => (
+          <li>
+            <PostCard post={post} />
+          </li>
+        ))}
+      </ul>
+    )}
+  </Section>
+</BaseLayout>

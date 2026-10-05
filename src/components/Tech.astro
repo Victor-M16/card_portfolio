@@ -1,0 +1,14 @@
+---
+import Marquee from "@/components/Marquee.astro";
+import Section from "@/components/Section.astro";
+import { technologies } from "@/data/technologies";
+
+const items = technologies.map((t) => ({ name: t.name, image: t.icon }));
+---
+
+<Section aria-labelledby="tech-heading">
+  <h2 id="tech-heading" class="section-sub mb-8 text-center">
+    My Tech Skillset
+  </h2>
+  <Marquee items={items} duration={30} />
+</Section>

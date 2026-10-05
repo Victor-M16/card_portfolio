@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+import Section from "@/components/Section.astro";
+import { services } from "@/data/services";
+---
+
+<Section id="about">
+  <div data-reveal>
+    <p class="section-sub">Introduction</p>
+    <h2 class="section-head">Overview.</h2>
+  </div>
+
+  <p class="text-secondary mt-4 max-w-3xl text-[17px] leading-[30px]" data-reveal data-reveal-delay="100">
+    I am Victor Mjimapemba: an engineer who turns code, circuits and designs into catalysts for change. I transform
+    complex challenges into elegant solutions, blending technical mastery with humanitarian vision. My work isn't just
+    about technology—it's about unlocking human potential. When you collaborate with me, you're not just hiring an
+    engineer. You're igniting possibility. Let's redefine what's possible, together.
+  </p>
+
+  <ul class="mt-12 flex list-none flex-wrap gap-10">
+    {services.map((service, index) => (
+      <li class="w-full xs:w-[250px]" data-reveal="left" data-reveal-delay={index * 150}>
+        <div class="green-pink-gradient shadow-card w-full rounded-[20px] p-px" data-tilt>
+          <div class="bg-tertiary flex min-h-[230px] flex-col items-center justify-evenly rounded-[20px] px-12 py-8">
+            <Image src={service.icon} alt="" width={64} height={64} class="size-16 object-contain" />
+            <h3 class="text-center text-[20px] font-bold text-white">{service.title}</h3>
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
+</Section>

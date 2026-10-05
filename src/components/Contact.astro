@@ -1,0 +1,13 @@
+---
+import ContactForm from "@/components/ContactForm";
+import Section from "@/components/Section.astro";
+import { site } from "@/data/site";
+---
+
+<Section id="contact">
+  <div class="bg-black-100 max-w-2xl rounded-2xl p-8" data-reveal>
+    <p class="section-sub">Get in touch</p>
+    <h2 class="section-head">Contact.</h2>
+    <ContactForm client:visible fallbackEmail={site.email} />
+  </div>
+</Section>

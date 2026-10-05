@@ -1,0 +1,53 @@
+---
+import { getImage } from "astro:assets";
+import poster from "@/assets/hero-poster.jpg";
+
+const posterImage = await getImage({ src: poster, width: 1280, format: "webp" });
+---
+
+<section class="relative h-svh w-full overflow-hidden" aria-label="Introduction">
+  <video
+    class="absolute inset-0 size-full object-cover"
+    src="/hero.mp4"
+    poster={posterImage.src}
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+  ></video>
+  <!-- Darkens the video so the text stays readable. -->
+  <div class="from-primary/70 via-primary/40 to-primary absolute inset-0 bg-gradient-to-b"></div>
+
+  <div class="relative mx-auto flex max-w-7xl flex-row items-start gap-5 px-6 pt-32 sm:px-16">
+    <div class="mt-5 flex flex-col items-center" aria-hidden="true">
+      <div class="bg-gold size-5 rounded-full"></div>
+      <div class="gold-gradient h-40 w-1 sm:h-80"></div>
+    </div>
+
+    <div data-reveal>
+      <h1 class="mt-2 text-[40px] font-black text-white xs:text-[50px] sm:text-[55px] lg:text-[70px] lg:leading-[98px]">
+        Hi, I'm <span class="text-gold">Victor</span>
+      </h1>
+      <p class="text-white-100 mt-2 text-[16px] font-medium xs:text-[20px] sm:text-[23px] lg:text-[27px] lg:leading-[40px]">
+        I design and develop real time information and control systems. <br class="hidden sm:block" />I also perform
+        electrical engineering services.
+      </p>
+    </div>
+  </div>
+
+  <div class="absolute bottom-20 flex w-full justify-center">
+    <a href="#about" aria-label="Scroll to About">
+      <div class="border-secondary flex h-[64px] w-[35px] items-start justify-center rounded-3xl border-4 p-2">
+        <div class="bg-secondary animate-scroll-cue mb-1 size-3 rounded-full"></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<style>
+  .animate-scroll-cue {
+    animation: scroll-cue 1.5s ease-in-out infinite;
+  }
+</style>

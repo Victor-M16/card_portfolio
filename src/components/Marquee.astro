@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+export interface MarqueeItem {
+  name: string;
+  image: ImageMetadata;
+  href?: string;
+}
+
+interface Props {
+  items: MarqueeItem[];
+  /** Seconds for one full loop. */
+  duration?: number;
+}
+
+const { items, duration = 30 } = Astro.props;
+const imageClass =
+  "size-full object-contain grayscale transition duration-300 ease-in-out hover:grayscale-0 focus-visible:grayscale-0";
+---
+
+<div
+  class="marquee relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+  style={`--marquee-duration: ${duration}s`}
+>
+  <ul class="marquee-track flex w-max list-none items-center">
+    {
+      // Rendered twice so the -50% slide loops seamlessly; the copy is hidden from assistive tech.
+      [false, true].map((isCopy) =>
+        items.map((item) => (
+          <li class="mx-6 size-20 shrink-0 md:size-28 lg:size-32" aria-hidden={isCopy ? "true" : undefined}>
+            {item.href ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={item.name}
+                tabindex={isCopy ? -1 : undefined}
+              >
+                <Image src={item.image} alt={item.name} width={128} height={128} class={imageClass} />
+              </a>
+            ) : (
+              <Image src={item.image} alt={item.name} title={item.name} width={128} height={128} class={imageClass} />
+            )}
+          </li>
+        )),
+      )
+    }
+  </ul>
+</div>

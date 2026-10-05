@@ -1,0 +1,17 @@
+---
+import Marquee from "@/components/Marquee.astro";
+import Section from "@/components/Section.astro";
+import { experiences } from "@/data/experiences";
+
+const items = experiences.map((e) => ({ name: e.company, image: e.logo, href: e.website }));
+---
+
+<Section id="companies" aria-labelledby="companies-heading">
+  <p class="section-sub mb-4 text-center">Great people I have worked with</p>
+  <h2 id="companies-heading" class="section-head text-center">
+    Experience
+  </h2>
+  <div class="mt-8">
+    <Marquee items={items} duration={25} />
+  </div>
+</Section>

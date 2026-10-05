@@ -1,0 +1,7 @@
+dist/
+.astro/
+.vercel/
+archive/
+package-lock.json
+src/assets/
+public/

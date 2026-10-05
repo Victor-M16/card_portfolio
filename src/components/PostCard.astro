@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets";
+import { formatDate, readingTime, type Post } from "@/lib/blog";
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, cover, coverAlt, tags, draft } = post.data;
+---
+
+<article class="bg-tertiary group flex h-full flex-col overflow-hidden rounded-2xl transition hover:-translate-y-1">
+  {cover && (
+    <Image
+      src={cover}
+      alt={coverAlt ?? ""}
+      width={720}
+      widths={[400, 720]}
+      sizes="(min-width: 768px) 50vw, 100vw"
+      class="aspect-[16/9] w-full object-cover"
+    />
+  )}
+  <div class="flex flex-1 flex-col p-6">
+    <p class="text-secondary text-sm">
+      <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time> · {readingTime(post.body)}
+      {draft && <span class="bg-gold text-primary ml-2 rounded px-2 py-0.5 text-xs font-bold">DRAFT</span>}
+    </p>
+    <h2 class="mt-2 text-2xl font-bold text-white">
+      <a href={`/blog/${post.id}/`} class="after:absolute after:inset-0 group-hover:underline">
+        {title}
+      </a>
+    </h2>
+    <p class="text-secondary mt-3 flex-1">{description}</p>
+    {tags.length > 0 && (
+      <ul class="mt-4 flex list-none flex-wrap gap-3 text-sm">
+        {tags.map((tag) => (
+          <li class="text-gradient-blue">#{tag}</li>
+        ))}
+      </ul>
+    )}
+  </div>
+</article>
+
+<style>
+  article {
+    position: relative;
+  }
+</style>
