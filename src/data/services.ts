@@ -10,7 +10,7 @@ export interface Service {
 }
 
 export const services: Service[] = [
-  { title: "Web and Mobile Developer", icon: web },
+  { title: "AI Specialist", icon: web },
   { title: "Circuit Analysis and Design", icon: backend },
   { title: "Systems Architect", icon: creator },
   { title: "IoT Engineer", icon: mobile },
