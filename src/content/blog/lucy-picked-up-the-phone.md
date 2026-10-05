@@ -15,7 +15,7 @@ Lucy is a voice assistant you reach with an ordinary phone call, in Chichewa or 
 
 This time Lucy runs on Asterisk, an open-source phone system, in Docker on my desktop. A small Python program sits behind it. Asterisk streams the caller's audio to Python in 20 millisecond chunks, and Python can send audio back down the line. I test it with Zoiper, a free softphone app, on my phone over Wi-Fi.
 
-The first real call kept failing with "wrong username or password". The password was right. It turned out my laptop already had two other phone servers installed, a system copy of Asterisk and something called Kamailio, left over from older experiments. Both started at boot and grabbed the standard SIP port before Lucy's Asterisk could. My softphone was talking to the wrong server the whole time.
+The first real call kept failing with "wrong username or password". The password was right. It turned out my desktop already had two other phone servers installed, a system copy of Asterisk and something called Kamailio, left over from older experiments. Both started at boot and grabbed the standard SIP port before Lucy's Asterisk could. My softphone was talking to the wrong server the whole time.
 
 I would not have found that myself. I was pair-programming with an AI coding assistant, and it read the startup logs, found "Address already in use", and traced the port to the two services. Once I disabled them, the call connected. Linphone, the first softphone I tried, still refused to log in until I cleared its saved data. Zoiper worked first time.
 
