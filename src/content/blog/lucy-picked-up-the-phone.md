@@ -1,19 +1,19 @@
 ---
 title: "Lucy picked up the phone"
-description: "Lucy, a Chichewa and English voice assistant you reach with an ordinary phone call, answered her first call on a phone line I run myself. Here's how it works, what broke, and how well speech recognition hears Chichewa over a real phone line."
+description: "Lucy, a Chichewa and English voice assistant you reach with an ordinary phone call, answered her first call on a phone line I run myself, then talked back. How it works, what broke, and where the seconds go."
 pubDate: 2026-10-05
-tags: ["lucy", "lemonade-systems", "chichewa", "speech-recognition", "cpu-inference"]
+tags: ["lucy", "lemonade-systems", "chichewa", "speech-recognition", "text-to-speech", "cpu-inference"]
 ---
 
 In 2024 I built the first version of Lucy on Twilio. Every test meant calling a foreign number from my phone in Malawi, on airtime. If I had kept building that way, I would have spent around 10,000 kwacha on airtime by now, just to hear my own prototype answer.
 
-Today Lucy answered a call on a phone line I run myself, on my laptop, and it cost me nothing.
+Today Lucy answered a call on a phone line I run myself, on my desktop, and it cost me nothing.
 
 Lucy is a voice assistant you reach with an ordinary phone call, in Chichewa or English. Most Malawians have a phone. Far fewer have a smartphone with data. A caller speaks, Lucy works out what they asked, and answers out loud. No app, no internet, no reading required on their side.
 
 ## My own phone line
 
-This time Lucy runs on Asterisk, an open-source phone system, in Docker on my laptop. A small Python program sits behind it. Asterisk streams the caller's audio to Python in 20 millisecond chunks, and Python can send audio back down the line. I test it with Zoiper, a free softphone app, on my phone over Wi-Fi.
+This time Lucy runs on Asterisk, an open-source phone system, in Docker on my desktop. A small Python program sits behind it. Asterisk streams the caller's audio to Python in 20 millisecond chunks, and Python can send audio back down the line. I test it with Zoiper, a free softphone app, on my phone over Wi-Fi.
 
 The first real call kept failing with "wrong username or password". The password was right. It turned out my laptop already had two other phone servers installed, a system copy of Asterisk and something called Kamailio, left over from older experiments. Both started at boot and grabbed the standard SIP port before Lucy's Asterisk could. My softphone was talking to the wrong server the whole time.
 
@@ -35,12 +35,12 @@ The model that did best is w2v-bert-2.0-chichewa from CLEAR Global, the nonprofi
 
 On my 20 sentences, recorded over a real call:
 
-| Measure                                             | Result         |
-| --------------------------------------------------- | -------------- |
-| Sentences transcribed perfectly                     | 9 of 20        |
-| Word error rate                                     | 27%            |
-| Character error rate                                | 6.4%           |
-| Time to transcribe a 3 second sentence (laptop CPU) | about 1 second |
+| Measure                                              | Result         |
+| ---------------------------------------------------- | -------------- |
+| Sentences transcribed perfectly                      | 9 of 20        |
+| Word error rate                                      | 27%            |
+| Character error rate                                 | 6.4%           |
+| Time to transcribe a 3 second sentence (desktop CPU) | about 1 second |
 
 A 27% word error rate sounds bad. Most of it is spelling, not hearing. The model wrote _yamawa_ for _ya mawa_ and _kumsika_ for _ku msika_. Joining two words counts as two errors, so _zikomokwambiri_ scored 100% wrong even though every sound was right. English words came out spelled the Chichewa way: _yunivesite_, _loni_, and _erto man_ for Airtel Money.
 
@@ -58,9 +58,32 @@ This did not surprise me. A free tier makes no promises about response time, and
 
 For now Lucy gives up after 10 seconds instead of leaving the caller in silence. The real fix is a model I control.
 
+## She speaks
+
+A few hours later, Lucy talked back. I gave her a voice: an openly licensed Chichewa text-to-speech model trained on Open Bible recordings, running on the same CPU. When a call connects she says _Moni, ndine Lucy. Ndingakuthandizeni bwanji lero?_ and every reply is spoken, one sentence at a time.
+
+My first real conversation with her ran 14 turns. I asked about the capital, about political parties, about what UDF stands for. She answered in Chichewa. When she said UDF ruled from 1994, she said the year in words, _chikwi chimodzi makumi asanu ndi anayi mphambu zinayi_, because I had told her the voice cannot read digits. On that call Gemini behaved: 2.2 seconds per reply on average.
+
+Three things were not right.
+
+**Her voice.** Lucy is a woman, at least in version one. On a phone line, the only openly licensed Chichewa voice I found sounds like a village preacher and father of three, enthusiastically explaining Malawian politics. I know who I want to ask to be Lucy's real voice.
+
+**She made something up.** I said _kapita fiti ya Lilongwe_, meaning capital city. Speech recognition wrote down what it heard, and the LLM confidently explained that "CapitaFifi" is a lending company in Lilongwe. It took five turns to get back on track. That is funny once. For a bank or a clinic it is the whole problem. Her instructions now say never to invent names, and to ask the caller to repeat a word she does not recognise.
+
+**She is slow.** Every turn is timed, so I know exactly where the seconds go:
+
+| Step                                | Median time |
+| ----------------------------------- | ----------- |
+| Speech recognition                  | about 1 s   |
+| Gemini reply                        | 2.2 s       |
+| Preparing her first spoken sentence | 1.7 s       |
+| **Until Lucy starts speaking**      | **5.3 s**   |
+
+Add about 0.7 seconds while she makes sure I have stopped talking. My target is 2 seconds.
+
 ## Why CPU
 
-Everything except the LLM runs on a laptop CPU. No GPU. That is deliberate.
+Everything except the LLM runs on a desktop CPU. No GPU. That is deliberate.
 
 A GPU server costs money every month whether anyone calls or not. Lucy has to cost very little per call to make sense in Malawi, so it has to run on the cheapest hardware that can do the job. Usually that means CPUs.
 
@@ -73,17 +96,13 @@ Lucy turns that into a concrete problem with two different shapes:
 
 I have a Raspberry Pi 4 on my desk. Getting both of those fast enough on it would say more than any paragraph I could write.
 
-## What's next: Lucy gets her voice
+## What's next
 
-Right now Lucy listens, understands and thinks of a reply, then plays a beep. She cannot speak yet. That is the next piece.
+Lucy can hold a conversation. Now she has to hold a good one. In order:
 
-Lucy is a woman, at least in version one. Her voice will come from CLEAR Global's Chichewa text-to-speech model to start with. Longer term, I want a voice Lemonade Systems owns outright: one Chichewa-speaking woman, a few hours of clean recordings, and an open model trained on them.
+1. **Trust.** No invented facts across a set of tricky test questions.
+2. **A woman's voice.** First from a short sample, recorded with consent, of the woman I want to be Lucy's voice. Then a full voice trained on her recordings, owned by Lemonade Systems.
+3. **Under 3 seconds per turn, then under 2.** This is where the CPU work starts paying off, down to the milliseconds.
+4. **A real phone number,** so anyone can call from any phone, and 20 real callers from outside my circle.
 
-After that, the plan is simple:
-
-1. Bring each turn under 2 seconds.
-2. Put Lucy on a real phone number, so anyone can call from any phone.
-3. Get 20 real callers from outside my circle, and learn what they actually ask.
-4. Have one serious conversation with a bank or a mobile network about paying for it.
-
-In 2024 every test call cost me airtime. Today the phone line and the code are mine, the speech model is open, and the first measurements are in. Lucy can hear Chichewa. Next, she answers.
+In 2024 every test call cost me airtime. Today the phone line and the code are mine, the speech models are open, and Lucy talks back in Chichewa. It cost me nothing. Next, she has to be worth calling.
