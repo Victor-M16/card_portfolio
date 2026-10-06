@@ -2,9 +2,9 @@
 import PostCard from "@/components/PostCard.astro";
 import Section from "@/components/Section.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getPosts, slugifyTag } from "@/lib/blog";
+import { getPostsFeaturedFirst, slugifyTag } from "@/lib/blog";
 
-const posts = await getPosts();
+const posts = await getPostsFeaturedFirst();
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 

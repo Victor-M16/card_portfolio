@@ -1,9 +1,9 @@
 ---
 import PostCard from "@/components/PostCard.astro";
 import Section from "@/components/Section.astro";
-import { getPosts } from "@/lib/blog";
+import { getPostsFeaturedFirst } from "@/lib/blog";
 
-const posts = (await getPosts()).slice(0, 3);
+const posts = (await getPostsFeaturedFirst()).slice(0, 3);
 ---
 
 {posts.length > 0 && (

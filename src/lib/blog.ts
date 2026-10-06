@@ -8,6 +8,12 @@ export async function getPosts(): Promise<Post[]> {
   return posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }
 
+/** Published posts with featured ones pinned first, then newest first. For listings people browse. */
+export async function getPostsFeaturedFirst(): Promise<Post[]> {
+  const posts = await getPosts();
+  return [...posts.filter((post) => post.data.featured), ...posts.filter((post) => !post.data.featured)];
+}
+
 export function slugifyTag(tag: string): string {
   return tag
     .toLowerCase()

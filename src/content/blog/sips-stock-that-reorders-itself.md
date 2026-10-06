@@ -39,11 +39,11 @@ We used SARIMAX, a classic time-series model that captures trend and repeating p
 
 ## What was held together with tape
 
-It won, and I'm proud of it. But I'd rather be honest about what four days produces.
+It won, and I'm proud of it. We built it in four days, missing class to be there, and some of what we used we were learning on the spot, before it came up in our courses that semester. So here is what four days produces.
 
 **The demand data was made up.** We had no real store's records, so the notebook generated random daily demand between 5 and 200 units for three imaginary products over two months, then trained on that. The model was real; the patterns it learned were noise.
 
-**The forecast didn't run live.** We ran it once in a notebook and pasted the resulting numbers into the server. The reorder points never changed as stock moved.
+**The model wasn't wired into the app.** We didn't have time to integrate the forecast into the product, so it ran as a separate instance and the app used the numbers it produced. It was the right call for four days, but it meant the reorder points didn't move as stock did.
 
 **The safety stock was a shortcut.** Proper safety stock comes from how wrong your forecasts tend to be: the more demand varies, the bigger the buffer you need for the service level you want. Ours took a percentile of the forecast itself, which looks reasonable on a slide and doesn't mean much.
 

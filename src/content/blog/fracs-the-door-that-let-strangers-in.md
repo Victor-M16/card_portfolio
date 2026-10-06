@@ -39,23 +39,23 @@ Pemphero was our test of someone who is enrolled but not allowed in. Changing wh
 
 It worked. The demo was convincing: walk up, the door opens; a stranger walks up, it stays shut. It won.
 
-## What I found two years later
+## What I knew, and what I didn't
 
-In September 2026 I sat down with the code again, pair-programming with an AI coding assistant, the same way I later built Lucy. Reading it with two more years of experience, the problems were obvious.
+Some of the gaps I knew about in 2024. The portal had no login. There was no database: face encodings lived in a pickle file, and who was allowed in lived in the code. I did try to add a database during the original build. It stopped the camera or the server from starting, I no longer remember which, and after several hours of debugging I ran out of time and shipped without it. I also knew the system sometimes confused me with Cliff, one of the four people enrolled.
+
+In September 2026 I came back to the code, pair-programming with an AI coding assistant, the same way I later built Lucy. That reading turned up two problems I hadn't thought through:
 
 **Anyone on the network could open the door.** The ESP32 obeyed any `POST /unlock` from anyone. No password, no signature. Anyone on the same Wi-Fi who found the address could open it from their phone.
 
 **An unlock lasted until something said lock.** If the Pi crashed or the Wi-Fi dropped straight after an unlock, the door stayed open.
 
-**The portal had no login.** Anyone who could reach the Pi could watch the camera and change who was allowed in.
-
-**And the recognition was too generous.** That one was the most interesting, because I could put a number on it.
+And the Cliff problem turned out to be much bigger than a quirk.
 
 ## Measuring the match limit
 
-`face_recognition` decides two faces are the same person when their 128 numbers are within a distance of 0.6. That default comes from the library, not from my door. I had never checked whether it suited my four enrolled people.
+`face_recognition` decides two faces are the same person when their 128 numbers are within a distance of 0.6. That default comes from the library, not from my door. I knew the system struggled to tell Cliff and me apart, but I had never measured how badly. The agent did, without me pointing it at the problem: it ran the dataset through the system and put a number on it.
 
-So I measured. Take one person out of the index, show the system each of their photos, and count how often it lets them in as someone else. Then repeat at stricter limits. On the 94 usable photos of 4 people in the dataset:
+The test: take one person out of the index, show the system each of their photos, and count how often it lets them in as someone else. Then repeat at stricter limits. On the 94 usable photos of 4 people in the dataset:
 
 | Match limit                       | Strangers let in | Enrolled people accepted |
 | --------------------------------- | ---------------- | ------------------------ |
@@ -66,7 +66,7 @@ So I measured. Take one person out of the index, show the system each of their p
 
 The two most similar different people in the set, Cliff and me, are about 0.45 apart. At 0.6 the system could not tell us apart, and the original matching (count which enrolled person has the most matching photos) actually misidentified Cliff as me. The new default is 0.4. It still accepted every enrolled photo in the test, and it leaves a margin below the 0.45 gap between Cliff and me.
 
-In the demo none of this showed. Every person who walked up was enrolled, so the door did the right thing every time. A demo shows that a system works for the cases you thought of. Measuring is how you find the ones you didn't.
+Knowing about a problem and measuring it are different things. I knew it mixed up Cliff and me. I didn't know that, at its default setting, it would let almost anyone in as somebody else. Seeing that as a number, then watching the limit tuned until the problem was gone on our data, was new. A demo shows that a system works for the cases you thought of. Measuring is how you find the ones you didn't.
 
 ## The rebuild
 
