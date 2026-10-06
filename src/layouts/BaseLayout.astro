@@ -14,7 +14,8 @@ type Props = ComponentProps<typeof SEO>;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#050816" />
+    <meta name="theme-color" content="#050816" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f5fb" media="(prefers-color-scheme: light)" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -37,7 +38,7 @@ type Props = ComponentProps<typeof SEO>;
   <body class="flex min-h-screen flex-col">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-primary"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-fg focus:px-4 focus:py-2 focus:text-primary"
     >
       Skip to content
     </a>

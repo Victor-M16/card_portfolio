@@ -22,7 +22,7 @@ const ogImage = cover ? (await getImage({ src: cover, width: 1200, height: 630, 
 
 <BaseLayout title={title} description={description} image={ogImage} type="article" publishedTime={pubDate}>
   <article class="mx-auto max-w-3xl px-6 pt-32 pb-16">
-    <a href="/blog" class="text-secondary hover:text-white">
+    <a href="/blog" class="text-secondary hover:text-fg">
       ← All posts
     </a>
 
@@ -30,7 +30,7 @@ const ogImage = cover ? (await getImage({ src: cover, width: 1200, height: 630, 
       {draft && (
         <p class="bg-gold text-primary mb-4 w-fit rounded px-2 py-0.5 text-xs font-bold">DRAFT – not published</p>
       )}
-      <h1 class="text-4xl font-black text-white sm:text-5xl">{title}</h1>
+      <h1 class="text-4xl font-black text-fg sm:text-5xl">{title}</h1>
       <p class="text-secondary mt-4">
         <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
         {updatedDate && (
@@ -67,12 +67,12 @@ const ogImage = cover ? (await getImage({ src: cover, width: 1200, height: 630, 
       />
     )}
 
-    <div class="prose prose-invert prose-lg prose-a:text-gold prose-headings:scroll-mt-28 prose-img:rounded-xl prose-pre:bg-black-200 prose-code:before:content-none prose-code:after:content-none mt-10 max-w-none">
+    <div class="prose dark:prose-invert prose-lg prose-a:text-gold prose-headings:scroll-mt-28 prose-img:rounded-xl prose-pre:bg-black-200 prose-code:before:content-none prose-code:after:content-none mt-10 max-w-none">
       <Content />
     </div>
 
     {(newer || older) && (
-      <nav aria-label="More posts" class="mt-16 grid gap-4 border-t border-white/10 pt-8 sm:grid-cols-2">
+      <nav aria-label="More posts" class="mt-16 grid gap-4 border-t border-fg/10 pt-8 sm:grid-cols-2">
         {older ? (
           <a href={`/blog/${older.id}/`} class="bg-tertiary rounded-xl p-4 hover:text-gold">
             <span class="text-secondary block text-sm">← Older</span>
