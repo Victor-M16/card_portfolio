@@ -4,10 +4,10 @@ description: "SIPS won first place at the 2024 Digital Malawi Hackathon: RFID ta
 pubDate: 2026-10-06
 tags: ["sips", "hackathon", "rfid", "raspberry-pi", "forecasting"]
 cover: "../../assets/sips_pi.jpg"
-coverAlt: "Members of Team Sixth Sense holding a prize cheque at the Digital Malawi Hackathon."
+coverAlt: "Team Sixth Sense with a prize cheque at the Digital Malawi Hackathon."
 ---
 
-In February 2024, Team Sixth Sense won first place at the E-Government Digital Malawi Hackathon, organised by NxtGen Labs. Our entry was SIPS, the Smarter Inventory and Procurement System. The first commit is from 31 January and the last hackathon commit from 3 February. Four days.
+In February 2024, Team Sixth Sense, which was Wongani and me, won first place at the E-Government Digital Malawi Hackathon, organised by NxtGen Labs. Our entry was SIPS, the Smarter Inventory and Procurement System. The first commit is from 31 January and the last hackathon commit from 3 February. Four days.
 
 The idea: a store room that knows what it has, notices when something is about to run out, and starts the paperwork to buy more before it does.
 

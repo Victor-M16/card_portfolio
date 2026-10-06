@@ -9,13 +9,15 @@ coverAlt: "The Smart Pharmacist landing page."
 
 For our final year engineering project at MUBAS in 2024, Khumbolawo Mussa, Grace Chiwaya and I built a vending machine for prescription medication. A doctor writes a prescription, the patient gets an SMS with a 4-digit code, and the machine hands over exactly what was prescribed when they type that code in.
 
+It was Khumbo's idea. He kept complaining about the queues at Queen Elizabeth Central Hospital (QECH) in Blantyre. You could wait a long time, and sometimes reach the front only to find out they didn't have the medicine you were prescribed. The longer I thought about it, the worse it looked: the queue itself is a place where sick people sit together for a long time, where you can catch something new or make what you have worse. So we set out to design the whole journey end to end, from the doctor's desk to the patient's hand.
+
 ## How it works
 
 ![The Smart Pharmacist concept: the doctor's web client, the backend API and database, the patient's phone receiving an SMS, and the vending machine.](./smart-pharmacist/architecture.png)
 
 1. **The doctor writes the prescription** in a web app: the patient, the condition, the medication and how to take it.
 2. **The server generates a 4-digit code** for that prescription. It picks one at random and tries again until it finds a code no other prescription is using.
-3. **The patient gets an SMS** with the code, the medication names and the instructions. Not everyone has a phone, or a charged one, so the code also appears on the doctor's screen to be copied onto paper or into the patient's health passport.
+3. **The patient gets an SMS** with the code, the medication names, the instructions, and which machine to go to. Before sending it, the server checks which machine has every prescribed medicine in stock. If none does, the SMS says so (_Mankhwala palibe. Out of stock_), so nobody queues for medicine that isn't there. Not everyone has a phone, or a charged one, so the code also appears on the doctor's screen to be copied onto paper or into the patient's health passport.
 4. **The patient types the code** on the machine's keypad, with a 16x2 LCD showing what they've entered. The machine's prompts are in Chichewa and English.
 5. **The machine checks the code with the server.** If it belongs to a prescription that hasn't been dispensed, the server replies with the list of slots holding those medications.
 6. **The carousel turns** to each slot in turn, and the patient collects their medication.
@@ -54,7 +56,7 @@ Healthcare data is about as sensitive as data gets, so we designed with HIPAA in
 
 Looking at it two years later, there are things I'd do differently.
 
-**Four digits is not much of a secret.** There are 10,000 possible codes. The code proves you know a number, not that you're the patient. Today I'd make codes expire after a set time, limit wrong attempts at the keypad, and use longer codes for medication that is worth stealing.
+**Four digits is not much of a secret.** There are 10,000 possible codes, and we never limited wrong attempts at the keypad, so someone patient enough could have worked through them. The code proves you know a number, not that you're the patient. Today I'd make codes expire after a set time, lock the keypad after a few wrong attempts, and use longer codes for medication that is worth stealing.
 
 **The prescription is marked as dispensed too early.** The server marks the code as used the moment it sends the slot list, before the carousel has turned and before the patient has anything in hand. If the motor jams, the patient's code is spent and they have nothing. The machine should confirm the handover first.
 
