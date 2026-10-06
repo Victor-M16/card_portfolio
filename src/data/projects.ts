@@ -52,6 +52,7 @@ export const projects: Project[] = [
     image: sips,
     award: "1st place, Digital Malawi Hackathon",
     sourceUrl: "https://github.com/Victor-M16/Stores-Management",
+    liveUrl: "/blog/sips-stock-that-reorders-itself/",
     featured: true,
   },
   {
@@ -78,6 +79,7 @@ export const projects: Project[] = [
     image: facialRecognition,
     award: "1st place, Starck Innovation Awards 2024",
     sourceUrl: "https://github.com/Victor-M16/Facial-Recognition-Access-Control-System",
+    liveUrl: "/blog/fracs-the-door-that-let-strangers-in/",
     featured: true,
   },
   {
@@ -91,6 +93,7 @@ export const projects: Project[] = [
     ],
     image: smartPharm,
     sourceUrl: "https://github.com/Victor-M16/Smart-Pharmacist",
+    liveUrl: "/blog/smart-pharmacist-four-digits-and-a-carousel/",
     featured: true,
   },
   {
