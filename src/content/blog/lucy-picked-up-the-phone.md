@@ -3,6 +3,7 @@ title: "Lucy picked up the phone"
 description: "Lucy, a Chichewa and English voice assistant you reach with an ordinary phone call, answered her first call on a phone line I run myself, then talked back. How it works, what broke, and where the seconds go."
 pubDate: 2026-10-05
 tags: ["lucy", "lemonade-systems", "chichewa", "speech-recognition", "text-to-speech", "cpu-inference"]
+featured: true
 ---
 
 In 2024 I built the first version of Lucy on Twilio. Every test meant calling a foreign number from my phone in Malawi, on airtime. If I had kept building that way, I would have spent around 10,000 kwacha on airtime by now, just to hear my own prototype answer.

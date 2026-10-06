@@ -16,6 +16,8 @@ const blog = defineCollection({
       coverAlt: z.string().optional(),
       /** Drafts show up in `npm run dev` but are left out of production builds. */
       draft: z.boolean().default(false),
+      /** Pinned to the top of the blog page and the home page. RSS and older/newer links stay in date order. */
+      featured: z.boolean().default(false),
     }),
 });
 

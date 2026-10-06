@@ -27,6 +27,7 @@ This post is a **draft**, so it shows up in `npm run dev` but is left out of pro
 | `cover`       | no       | Image path relative to the post, e.g. `./lucy/cover.png`.        |
 | `coverAlt`    | no       | Describe the cover image for screen readers.                     |
 | `draft`       | no       | `true` keeps it out of production.                               |
+| `featured`    | no       | `true` pins it to the top of the blog and home page.             |
 
 A post with a `cover` uses it as its social preview image, so links shared on LinkedIn, X, or WhatsApp show it.
 
