@@ -5,7 +5,7 @@ import { experiences } from "@/data/experiences";
 ---
 
 <Section id="work" aria-label="Work experience">
-  <ol class="relative ml-6 list-none border-l-4 border-[#232631] sm:ml-8">
+  <ol class="relative ml-6 list-none border-l-4 border-line sm:ml-8">
     {experiences.map((experience) => (
       <li class="relative mb-12 pl-10 last:mb-0 sm:pl-14" data-reveal>
         <a
@@ -19,17 +19,17 @@ import { experiences } from "@/data/experiences";
           <Image src={experience.logo} alt="" width={64} height={64} class="size-full rounded-full object-contain" />
         </a>
 
-        <article class="rounded-xl bg-[#1d1836] p-6 shadow-md">
+        <article class="rounded-xl bg-card p-6 shadow-md">
           <h3 class="text-secondary text-base font-semibold">
-            <a href={experience.website} target="_blank" rel="noopener noreferrer" class="hover:text-white">
+            <a href={experience.website} target="_blank" rel="noopener noreferrer" class="hover:text-fg">
               {experience.company}
             </a>
           </h3>
 
           <ol class="mt-3 list-none space-y-6">
             {experience.roles.map((role, index) => (
-              <li class:list={[index > 0 && "border-t border-white/10 pt-6"]}>
-                <p class="text-lg font-bold text-white sm:text-xl">{role.title}</p>
+              <li class:list={[index > 0 && "border-t border-fg/10 pt-6"]}>
+                <p class="text-lg font-bold text-fg sm:text-xl">{role.title}</p>
                 <p class="text-secondary mt-1 text-sm font-medium">{role.date}</p>
                 <ul class="mt-4 ml-5 list-disc space-y-2">
                   {role.points.map((point) => (

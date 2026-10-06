@@ -4,12 +4,17 @@
 @theme {
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary: #050816;
-  --color-secondary: #aaa6c3;
-  --color-tertiary: #151030;
+  /* Dark is the default palette; the light values below swap in when the
+     visitor's system prefers light. Components only use these names. */
+  --color-primary: #050816; /* page background */
+  --color-secondary: #aaa6c3; /* muted text */
+  --color-tertiary: #151030; /* cards and inputs */
   --color-black-100: #100d25;
   --color-black-200: #090325;
-  --color-white-100: #f3f3f3;
+  --color-white-100: #f3f3f3; /* body text on cards */
+  --color-fg: #ffffff; /* headings and primary text */
+  --color-card: #1d1836; /* timeline cards */
+  --color-line: #232631; /* timeline rail */
   --color-gold: #f7bd25;
 
   --shadow-card: 0px 35px 120px -15px #211e35;
@@ -17,16 +22,36 @@
   --breakpoint-xs: 450px;
 }
 
+/* Light mode. Every text colour here keeps at least 4.5:1 contrast against
+   the backgrounds it sits on; gold is darkened because #f7bd25 on white is
+   unreadable. The hero keeps its own fixed dark colours (it sits on video). */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-primary: #f6f5fb;
+    --color-secondary: #514c6b;
+    --color-tertiary: #eceaf5;
+    --color-black-100: #ecebf6;
+    --color-black-200: #e2dff0;
+    --color-white-100: #2b2840;
+    --color-fg: #0b0a1a;
+    --color-card: #eceaf5;
+    --color-line: #d6d2e6;
+    --color-gold: #865a00;
+
+    --shadow-card: 0px 16px 40px -24px rgb(40 30 90 / 0.18);
+  }
+}
+
 @layer base {
   html {
-    color-scheme: dark;
+    color-scheme: light dark;
     scroll-behavior: smooth;
     /* Keeps anchor targets clear of the fixed navbar. */
     scroll-padding-top: 6rem;
   }
 
   body {
-    @apply bg-primary font-sans text-white antialiased;
+    @apply bg-primary font-sans text-fg antialiased;
   }
 
   :focus-visible {
@@ -39,7 +64,7 @@
 }
 
 @utility section-head {
-  @apply text-[30px] font-black text-white xs:text-[40px] sm:text-[50px] md:text-[60px];
+  @apply text-[30px] font-black text-fg xs:text-[40px] sm:text-[50px] md:text-[60px];
 }
 
 @utility gold-gradient {

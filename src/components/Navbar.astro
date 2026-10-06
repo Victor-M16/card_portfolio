@@ -10,7 +10,7 @@ const isBlog = Astro.url.pathname.startsWith("/blog");
   <nav aria-label="Main" class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 sm:px-16">
     <a href="/" class="flex items-center gap-2">
       <Image src={avatar} alt="" width={36} height={36} class="size-9 rounded-full object-cover" loading="eager" />
-      <span class="text-[18px] font-bold text-white">
+      <span class="text-[18px] font-bold text-fg">
         {site.shortName}
         <span class="hidden sm:inline"> Mjimapemba</span>
       </span>
@@ -22,7 +22,7 @@ const isBlog = Astro.url.pathname.startsWith("/blog");
           <a
             href={link.href}
             aria-current={isBlog && link.href === "/blog" ? "page" : undefined}
-            class="text-secondary text-[18px] font-medium transition-colors hover:text-white aria-[current=page]:text-white"
+            class="text-secondary text-[18px] font-medium transition-colors hover:text-fg aria-[current=page]:text-fg"
           >
             {link.label}
           </a>
@@ -37,7 +37,7 @@ const isBlog = Astro.url.pathname.startsWith("/blog");
         aria-controls="mobile-menu"
         aria-expanded="false"
         aria-label="Open menu"
-        class="flex size-10 items-center justify-center rounded-lg text-white"
+        class="flex size-10 items-center justify-center rounded-lg text-fg"
       >
         <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path data-icon="open" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"></path>
@@ -46,11 +46,15 @@ const isBlog = Astro.url.pathname.startsWith("/blog");
       </button>
       <ul
         id="mobile-menu"
-        class="black-gradient absolute top-20 right-0 mx-4 my-2 hidden min-w-[160px] list-none flex-col gap-4 rounded-xl p-6"
+        class="border-fg/10 bg-primary shadow-card absolute inset-x-4 top-full mt-2 hidden list-none flex-col gap-1 rounded-2xl border p-2"
       >
         {navLinks.map((link) => (
           <li>
-            <a href={link.href} class="text-secondary text-[16px] font-medium hover:text-white">
+            <a
+              href={link.href}
+              aria-current={isBlog && link.href === "/blog" ? "page" : undefined}
+              class="hover:bg-tertiary aria-[current=page]:bg-tertiary aria-[current=page]:text-gold block rounded-xl px-4 py-3 text-[17px] font-medium text-fg transition-colors"
+            >
               {link.label}
             </a>
           </li>
@@ -80,6 +84,11 @@ const isBlog = Astro.url.pathname.startsWith("/blog");
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") setOpen(false);
+    });
+    // Tapping anywhere outside the menu closes it.
+    document.addEventListener("click", (event) => {
+      const target = event.target as Node;
+      if (!menu.contains(target) && !toggle.contains(target)) setOpen(false);
     });
   }
 </script>

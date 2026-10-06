@@ -50,7 +50,7 @@ const tagClass: Record<TagColor, string> = {
             href={project.sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="black-gradient flex size-10 items-center justify-center rounded-full"
+            class="black-gradient flex size-10 items-center justify-center rounded-full text-white"
             aria-label={`Source code for ${project.name} on GitHub`}
           >
             <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -63,7 +63,7 @@ const tagClass: Record<TagColor, string> = {
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="black-gradient flex size-10 items-center justify-center rounded-full"
+            class="black-gradient flex size-10 items-center justify-center rounded-full text-white"
             aria-label={`Live demo of ${project.name}`}
           >
             <svg
@@ -87,7 +87,7 @@ const tagClass: Record<TagColor, string> = {
   </div>
 
   <div class="mt-5 flex-1">
-    <h3 class="text-[24px] font-bold text-white">{project.name}</h3>
+    <h3 class="text-[24px] font-bold text-fg">{project.name}</h3>
     <p class="text-secondary mt-2 text-[14px]">{project.description}</p>
     {isInternal && (
       <a href={project.liveUrl} class="text-gold mt-3 inline-block text-sm font-medium hover:underline">

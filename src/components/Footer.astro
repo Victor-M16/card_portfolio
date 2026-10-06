@@ -4,39 +4,39 @@ import { site } from "@/data/site";
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-white/10">
+<footer class="border-t border-fg/10">
   <div class="text-secondary mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-16">
     <p>
       © {year} {site.name}
     </p>
     <ul class="flex gap-6">
       <li>
-        <a class="hover:text-white" href="/blog">
+        <a class="hover:text-fg" href="/blog">
           Blog
         </a>
       </li>
       <li>
-        <a class="hover:text-white" href="/rss.xml">
+        <a class="hover:text-fg" href="/rss.xml">
           RSS
         </a>
       </li>
       <li>
-        <a class="hover:text-white" href={site.github} rel="me">
+        <a class="hover:text-fg" href={site.github} rel="me">
           GitHub
         </a>
       </li>
       <li>
-        <a class="hover:text-white" href={site.linkedin} rel="me">
+        <a class="hover:text-fg" href={site.linkedin} rel="me">
           LinkedIn
         </a>
       </li>
       <li>
-        <a class="hover:text-white" href={site.medium} rel="me">
+        <a class="hover:text-fg" href={site.medium} rel="me">
           Medium
         </a>
       </li>
       <li>
-        <a class="hover:text-white" href={`mailto:${site.email}`}>
+        <a class="hover:text-fg" href={`mailto:${site.email}`}>
           Email
         </a>
       </li>

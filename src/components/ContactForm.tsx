@@ -9,7 +9,7 @@ interface Props {
 }
 
 const inputClass =
-  "bg-tertiary placeholder:text-secondary rounded-lg border-none px-6 py-4 font-medium text-white outline-none focus-visible:ring-2 focus-visible:ring-gold aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-400";
+  "bg-tertiary placeholder:text-secondary rounded-lg border-none px-6 py-4 font-medium text-fg outline-none focus-visible:ring-2 focus-visible:ring-gold aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-400";
 
 export default function ContactForm({ fallbackEmail }: Props) {
   const [status, setStatus] = useState<Status>("idle");
@@ -58,7 +58,7 @@ export default function ContactForm({ fallbackEmail }: Props) {
   return (
     <form onSubmit={handleSubmit} noValidate className="mt-12 flex flex-col gap-8">
       <label htmlFor="contact-name" className="flex flex-col gap-4">
-        <span className="font-medium text-white">Your name</span>
+        <span className="font-medium text-fg">Your name</span>
         <input
           {...field("name")}
           type="text"
@@ -72,7 +72,7 @@ export default function ContactForm({ fallbackEmail }: Props) {
       </label>
 
       <label htmlFor="contact-email" className="flex flex-col gap-4">
-        <span className="font-medium text-white">Your email</span>
+        <span className="font-medium text-fg">Your email</span>
         <input
           {...field("email")}
           type="email"
@@ -86,7 +86,7 @@ export default function ContactForm({ fallbackEmail }: Props) {
       </label>
 
       <label htmlFor="contact-message" className="flex flex-col gap-4">
-        <span className="font-medium text-white">Your message</span>
+        <span className="font-medium text-fg">Your message</span>
         <textarea
           {...field("message")}
           rows={7}
@@ -109,7 +109,7 @@ export default function ContactForm({ fallbackEmail }: Props) {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-fit rounded-xl bg-tertiary px-8 py-3 font-bold text-white shadow-md shadow-primary transition outline-none hover:bg-[#1f1847] focus-visible:ring-2 focus-visible:ring-gold disabled:opacity-60"
+        className="w-fit rounded-xl bg-tertiary px-8 py-3 font-bold text-fg shadow-md shadow-primary transition outline-none hover:bg-black-200 focus-visible:ring-2 focus-visible:ring-gold disabled:opacity-60"
       >
         {status === "sending" ? "Sending…" : "Send"}
       </button>
