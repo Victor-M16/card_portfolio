@@ -9,7 +9,7 @@ Some decisions in software are too fuzzy for an `if` statement and too small to 
 
 An `if` statement can't read. An LLM can, but it reads the question, thinks, then writes an answer one word piece at a time, and on a CPU that writing is the slow part. For a decision that only needs a yes or a no, most of that work is wasted.
 
-This week I tried Jevos, an open-source, locally runnable version of the Jev decision model. It blew my mind, because it makes exactly that trade.
+This week I tried Jevos. Jev is a decision model from TypeSafe AI, and Jevos and Laya are open-source versions of it that run locally. It blew my mind, because it makes exactly that trade.
 
 ## What it does
 
@@ -39,7 +39,7 @@ Zero output tokens.
 
 Running a language model has two phases. **Prefill** reads the whole prompt at once. It's a lot of arithmetic, done in parallel, and CPUs handle it reasonably well. **Decode** then generates the answer one token at a time, and for every single token the processor has to read all of the model's weights out of memory again. Decode is limited by memory bandwidth, not arithmetic, and memory bandwidth is exactly where a CPU falls furthest behind a GPU.
 
-Jevos never decodes. It reads the prompt and turns what it understood into probabilities. Then it runs INT8 weights through Intel's OpenVINO runtime, which uses the VNNI instructions modern CPUs already have for exactly this kind of integer arithmetic. The project reports answers in 26 ms on short requests and 112 ms on long ones on a laptop CPU. On my own machine I have a 1B model answering in seconds.
+Jevos never decodes. It reads the prompt and turns what it understood into probabilities. Then it runs INT8 weights through Intel's OpenVINO runtime, which uses the VNNI instructions modern CPUs already have for exactly this kind of integer arithmetic. The project reports answers in 26 ms on short requests and 112 ms on long ones on a laptop CPU. On my own machine, a 1B model answered in about 1.15 seconds. That's slower than the published figures, and I haven't yet dug into why (my CPU, the request size, or a cold start), but it's a model reading and judging a paragraph of text on an ordinary computer in about a second.
 
 This is the argument I keep making about CPU inference, shown in a product: stop shrinking a GPU-shaped workload until it fits, and shape the task around what the CPU is good at. Jevos doesn't make decode faster. It removes the need for it.
 
