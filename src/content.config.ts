@@ -21,4 +21,18 @@ const blog = defineCollection({
     }),
 });
 
-export const collections = { blog };
+/**
+ * Chapters of a novel, one file per chapter, under src/content/books/<book>/.
+ * The text is the manuscript exactly as written: these files are excluded from
+ * Prettier and must never be edited by tooling. The `slug` frontmatter field
+ * becomes the entry id and the chapter URL (chapter-1 … epilogue).
+ */
+const chapters = defineCollection({
+  loader: glob({ base: "./src/content/books", pattern: "**/*.md" }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number().int().positive(),
+  }),
+});
+
+export const collections = { blog, chapters };

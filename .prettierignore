@@ -5,3 +5,5 @@ archive/
 package-lock.json
 src/assets/
 public/
+# Book manuscript: kept exactly as written, never reformatted.
+src/content/books/
