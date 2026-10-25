@@ -1,0 +1,79 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { theStillFlame as book } from "@/data/books";
+import { chapterMinutes, getChapters } from "@/lib/books";
+
+const chapters = await getChapters(book.id);
+const base = `/fun/${book.id}`;
+const totalMinutes = chapters.reduce((sum, c) => sum + chapterMinutes(c.body), 0);
+const totalHours = Math.round(totalMinutes / 60);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  name: book.title,
+  author: { "@type": "Person", name: book.author },
+  bookFormat: "https://schema.org/EBook",
+  genre: "Science fantasy",
+  isPartOf: { "@type": "BookSeries", name: "Psi Is Wide" },
+  position: 1,
+  description: book.description.join(" "),
+  url: new URL(`${base}/`, Astro.site).href,
+  isAccessibleForFree: true,
+  inLanguage: "en",
+};
+---
+
+<BaseLayout
+  title={`${book.title}: ${book.series}`}
+  description={`${book.tagline} A science-fantasy novel by ${book.author}. Read it free online.`}
+  image={book.ogImage}
+  type="book"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <article class="mx-auto max-w-[68ch] px-6 pt-32 pb-20">
+    <a href="/fun" class="text-secondary hover:text-fg">
+      ← Fun
+    </a>
+
+    <header class="mt-10 text-center">
+      <p class="text-secondary text-sm tracking-[0.2em] uppercase">{book.series}</p>
+      <h1 class="mt-3 font-serif text-5xl font-bold text-fg sm:text-6xl">{book.title}</h1>
+      <p class="text-secondary mt-3">by {book.author}</p>
+      <p class="text-gold mx-auto mt-8 max-w-md font-serif text-xl italic">{book.tagline}</p>
+      <a
+        href={`${base}/${chapters[0]?.id}/`}
+        class="bg-gold text-primary mt-10 inline-block rounded-xl px-8 py-3 font-bold hover:opacity-90"
+      >
+        Start reading
+      </a>
+      <p class="text-secondary mt-3 text-sm">
+        {chapters.length} chapters · about {totalHours} hours
+      </p>
+    </header>
+
+    <section aria-label="About the book" class="book-prose mt-14">
+      {book.description.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </section>
+
+    <nav aria-labelledby="contents-heading" class="mt-16 border-t border-fg/10 pt-10">
+      <h2 id="contents-heading" class="text-2xl font-bold text-fg">
+        Contents
+      </h2>
+      <ol class="mt-6 list-none">
+        {chapters.map((chapter) => (
+          <li class="border-b border-fg/10">
+            <a href={`${base}/${chapter.id}/`} class="group flex items-baseline justify-between gap-4 py-3">
+              <span class="font-serif text-lg text-fg group-hover:text-gold">{chapter.data.title}</span>
+              <span class="text-secondary shrink-0 text-sm">{chapterMinutes(chapter.body)} min</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <p class="text-secondary mt-12 text-center text-sm">{book.copyright}</p>
+  </article>
+</BaseLayout>

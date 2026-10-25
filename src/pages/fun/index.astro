@@ -1,0 +1,21 @@
+---
+import BookPromo from "@/components/BookPromo.astro";
+import Section from "@/components/Section.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Fun"
+  description="Things Victor Mjimapemba makes for fun, including The Still Flame, a science-fantasy novel you can read free online."
+>
+  <Section class="pt-32">
+    <p class="section-sub">Off the clock</p>
+    <h1 class="section-head">Fun.</h1>
+    <p class="text-secondary mt-4 max-w-3xl text-[17px] leading-[30px]">
+      Things I make because I enjoy making them. No roadmap, no metrics.
+    </p>
+    <div class="mt-12">
+      <BookPromo headingLevel="h2" />
+    </div>
+  </Section>
+</BaseLayout>

@@ -9,6 +9,8 @@ import LatestPosts from "@/components/LatestPosts.astro";
 import Projects from "@/components/Projects.astro";
 import Tech from "@/components/Tech.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import BookPromo from "@/components/BookPromo.astro";
+import Section from "@/components/Section.astro";
 ---
 
 <BaseLayout>
@@ -20,5 +22,16 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   <Tech />
   <Projects />
   <LatestPosts />
+  <Section id="fun" aria-labelledby="fun-heading">
+    <div data-reveal>
+      <p class="section-sub">For fun</p>
+      <h2 id="fun-heading" class="section-head">
+        I also write fiction.
+      </h2>
+    </div>
+    <div class="mt-10" data-reveal data-reveal-delay="100">
+      <BookPromo />
+    </div>
+  </Section>
   <Contact />
 </BaseLayout>

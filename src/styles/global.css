@@ -3,6 +3,8 @@
 
 @theme {
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  /* Reading font for the novel: system serifs, nothing to download. */
+  --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, ui-serif, serif;
 
   /* Dark is the default palette; the light values below swap in when the
      visitor's system prefers light. Components only use these names. */
@@ -158,5 +160,55 @@
   .marquee-track,
   .animate-scroll-cue {
     animation: none;
+  }
+}
+
+/* Long-form fiction: comfortable measure, serif text, first-line indents,
+   and scene breaks (---) drawn as a centred ornament. */
+.book-prose {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  line-height: 1.75;
+  color: var(--color-white-100);
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.book-prose p {
+  margin: 0;
+  text-indent: 1.5em;
+}
+
+.book-prose > p:first-child,
+.book-prose hr + p {
+  text-indent: 0;
+}
+
+.book-prose em {
+  font-style: italic;
+}
+
+.book-prose strong {
+  color: var(--color-fg);
+}
+
+.book-prose hr {
+  border: 0;
+  height: auto;
+  overflow: visible;
+  margin: 2.25rem 0;
+  text-align: center;
+  color: var(--color-secondary);
+}
+
+.book-prose hr::after {
+  content: "* * *";
+  letter-spacing: 0.75em;
+}
+
+@media (max-width: 640px) {
+  .book-prose {
+    font-size: 1.0625rem;
+    line-height: 1.7;
   }
 }
