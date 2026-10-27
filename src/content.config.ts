@@ -24,11 +24,16 @@ const blog = defineCollection({
 /**
  * Chapters of a novel, one file per chapter, under src/content/books/<book>/.
  * The text is the manuscript exactly as written: these files are excluded from
- * Prettier and must never be edited by tooling. The `slug` frontmatter field
- * becomes the entry id and the chapter URL (chapter-1 … epilogue).
+ * Prettier and must never be edited by tooling. Ids are "<book>/<slug>"; the
+ * slug part is the chapter URL (chapter-1 … epilogue).
  */
 const chapters = defineCollection({
-  loader: glob({ base: "./src/content/books", pattern: "**/*.md" }),
+  loader: glob({
+    base: "./src/content/books",
+    pattern: "**/*.md",
+    // "<book>/<slug>", e.g. "book-two/chapter-1", so chapters of different books never collide.
+    generateId: ({ entry, data }) => `${entry.split("/")[0]}/${String(data.slug)}`,
+  }),
   schema: z.object({
     title: z.string(),
     order: z.number().int().positive(),
