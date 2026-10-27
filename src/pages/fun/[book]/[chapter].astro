@@ -2,18 +2,25 @@
 import type { GetStaticPaths } from "astro";
 import { render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { theStillFlame as book } from "@/data/books";
+import { books } from "@/data/books";
 import { chapterMinutes, getChapters } from "@/lib/books";
 
 export const getStaticPaths = (async () => {
-  const chapters = await getChapters(book.id);
-  return chapters.map((chapter, index) => ({
-    params: { chapter: chapter.id },
-    props: { chapter, index, total: chapters.length, prev: chapters[index - 1], next: chapters[index + 1] },
-  }));
+  const paths = [];
+  for (const book of books) {
+    const chapters = await getChapters(book.id);
+    paths.push(
+      ...chapters.map((chapter, index) => ({
+        params: { book: book.id, chapter: chapter.id.replace(`${book.id}/`, "") },
+        props: { book, chapter, index, total: chapters.length, prev: chapters[index - 1], next: chapters[index + 1] },
+      })),
+    );
+  }
+  return paths;
 }) satisfies GetStaticPaths;
 
-const { chapter, index, total, prev, next } = Astro.props;
+const { book, chapter, index, total, prev, next } = Astro.props;
+const chapterPath = (c: typeof chapter) => c.id.replace(`${book.id}/`, "");
 const { Content } = await render(chapter);
 const base = `/fun/${book.id}`;
 const title = chapter.data.title;
@@ -21,8 +28,8 @@ const description = `${title}, from ${book.title} (${book.series}), a science-fa
 ---
 
 <BaseLayout title={`${title} | ${book.title}`} description={description} image={book.ogImage}>
-  <link slot="head" rel="prev" href={prev ? `${base}/${prev.id}/` : `${base}/`} />
-  {next && <link slot="head" rel="next" href={`${base}/${next.id}/`} />}
+  <link slot="head" rel="prev" href={prev ? `${base}/${chapterPath(prev)}/` : `${base}/`} />
+  {next && <link slot="head" rel="next" href={`${base}/${chapterPath(next)}/`} />}
 
   <article class="mx-auto max-w-[68ch] px-6 pt-32 pb-16">
     <nav aria-label="Book" class="text-secondary flex items-center justify-between gap-4 text-sm">
@@ -46,7 +53,7 @@ const description = `${title}, from ${book.title} (${book.series}), a science-fa
 
     <nav aria-label="Chapters" class="mt-16 grid gap-4 border-t border-fg/10 pt-8 sm:grid-cols-2">
       {prev ? (
-        <a href={`${base}/${prev.id}/`} class="bg-tertiary rounded-xl p-4 hover:text-gold">
+        <a href={`${base}/${chapterPath(prev)}/`} class="bg-tertiary rounded-xl p-4 hover:text-gold">
           <span class="text-secondary block text-sm">← Previous</span>
           <span class="font-serif">{prev.data.title}</span>
         </a>
@@ -57,13 +64,15 @@ const description = `${title}, from ${book.title} (${book.series}), a science-fa
         </a>
       )}
       {next ? (
-        <a href={`${base}/${next.id}/`} class="bg-tertiary rounded-xl p-4 text-right hover:text-gold">
+        <a href={`${base}/${chapterPath(next)}/`} class="bg-tertiary rounded-xl p-4 text-right hover:text-gold">
           <span class="text-secondary block text-sm">Next →</span>
           <span class="font-serif">{next.data.title}</span>
         </a>
       ) : (
         <a href={`${base}/`} class="bg-tertiary rounded-xl p-4 text-right hover:text-gold">
-          <span class="text-secondary block text-sm">The end of Book One</span>
+          <span class="text-secondary block text-sm">
+            {book.status === "preview" ? "More chapters are on the way" : `The end of ${book.series.split(", ")[1]}`}
+          </span>
           <span class="font-serif">Back to contents</span>
         </a>
       )}

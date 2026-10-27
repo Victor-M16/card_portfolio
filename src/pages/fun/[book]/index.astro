@@ -1,9 +1,16 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { theStillFlame as book } from "@/data/books";
+import type { GetStaticPaths } from "astro";
+import { books, type Book } from "@/data/books";
 import { chapterMinutes, getChapters } from "@/lib/books";
 
+export const getStaticPaths = (() =>
+  books.map((book) => ({ params: { book: book.id }, props: { book } }))) satisfies GetStaticPaths;
+
+const { book } = Astro.props as { book: Book };
 const chapters = await getChapters(book.id);
+const isPreview = book.status === "preview";
+const chapterPath = (c: (typeof chapters)[number]) => c.id.replace(`${book.id}/`, "");
 const base = `/fun/${book.id}`;
 const totalMinutes = chapters.reduce((sum, c) => sum + chapterMinutes(c.body), 0);
 const totalHours = Math.round(totalMinutes / 60);
@@ -16,17 +23,18 @@ const jsonLd = {
   bookFormat: "https://schema.org/EBook",
   genre: "Science fantasy",
   isPartOf: { "@type": "BookSeries", name: "Psi Is Wide" },
-  position: 1,
-  description: book.description.join(" "),
+  position: book.id === "book-two" ? 2 : 1,
+  description: book.description?.join(" ") ?? book.summary,
   url: new URL(`${base}/`, Astro.site).href,
   isAccessibleForFree: true,
+  ...(isPreview && { creativeWorkStatus: "Draft" }),
   inLanguage: "en",
 };
 ---
 
 <BaseLayout
-  title={`${book.title}: ${book.series}`}
-  description={`${book.tagline} A science-fantasy novel by ${book.author}. Read it free online.`}
+  title={isPreview ? `${book.title} (work in progress)` : `${book.title}: ${book.series}`}
+  description={`${book.summary} Read it free online.`}
   image={book.ogImage}
   type="book"
 >
@@ -40,9 +48,14 @@ const jsonLd = {
       <p class="text-secondary text-sm tracking-[0.2em] uppercase">{book.series}</p>
       <h1 class="mt-3 font-serif text-5xl font-bold text-fg sm:text-6xl">{book.title}</h1>
       <p class="text-secondary mt-3">by {book.author}</p>
-      <p class="text-gold mx-auto mt-8 max-w-md font-serif text-xl italic">{book.tagline}</p>
+      {isPreview && (
+        <p class="bg-gold text-primary mx-auto mt-6 w-fit rounded px-3 py-1 text-xs font-bold tracking-wider uppercase">
+          Work in progress · {chapters.length} chapters so far
+        </p>
+      )}
+      {book.tagline && <p class="text-gold mx-auto mt-8 max-w-md font-serif text-xl italic">{book.tagline}</p>}
       <a
-        href={`${base}/${chapters[0]?.id}/`}
+        href={`${base}/${chapters[0] ? chapterPath(chapters[0]) : ""}/`}
         class="bg-gold text-primary mt-10 inline-block rounded-xl px-8 py-3 font-bold hover:opacity-90"
       >
         Start reading
@@ -53,9 +66,17 @@ const jsonLd = {
     </header>
 
     <section aria-label="About the book" class="book-prose mt-14">
-      {book.description.map((paragraph) => (
-        <p>{paragraph}</p>
-      ))}
+      {book.description ? (
+        book.description.map((paragraph) => <p>{paragraph}</p>)
+      ) : (
+        <p>
+          The second book in Psi Is Wide, and the sequel to{" "}
+          <a href="/fun/the-still-flame/" class="text-gold underline">
+            The Still Flame
+          </a>
+          . It's still being written: these are the first chapters, published as they're ready.
+        </p>
+      )}
     </section>
 
     <nav aria-labelledby="contents-heading" class="mt-16 border-t border-fg/10 pt-10">
@@ -65,7 +86,7 @@ const jsonLd = {
       <ol class="mt-6 list-none">
         {chapters.map((chapter) => (
           <li class="border-b border-fg/10">
-            <a href={`${base}/${chapter.id}/`} class="group flex items-baseline justify-between gap-4 py-3">
+            <a href={`${base}/${chapterPath(chapter)}/`} class="group flex items-baseline justify-between gap-4 py-3">
               <span class="font-serif text-lg text-fg group-hover:text-gold">{chapter.data.title}</span>
               <span class="text-secondary shrink-0 text-sm">{chapterMinutes(chapter.body)} min</span>
             </a>

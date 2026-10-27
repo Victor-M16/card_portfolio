@@ -2,6 +2,7 @@
 import BookPromo from "@/components/BookPromo.astro";
 import Section from "@/components/Section.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { books } from "@/data/books";
 ---
 
 <BaseLayout
@@ -14,8 +15,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     <p class="text-secondary mt-4 max-w-3xl text-[17px] leading-[30px]">
       Things I make because I enjoy making them. No roadmap, no metrics.
     </p>
-    <div class="mt-12">
-      <BookPromo headingLevel="h2" />
-    </div>
+    <ul class="mt-12 flex list-none flex-col gap-8">
+      {books.map((book) => (
+        <li>
+          <BookPromo headingLevel="h2" book={book} />
+        </li>
+      ))}
+    </ul>
   </Section>
 </BaseLayout>
