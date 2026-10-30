@@ -1,3 +1,6 @@
+import type { ImageMetadata } from "astro";
+import seriesCover from "@/assets/psi-is-wide-cover.webp";
+
 export interface Book {
   /** Folder under src/content/books/ and the URL segment under /fun/. */
   id: string;
@@ -12,6 +15,8 @@ export interface Book {
   summary: string;
   /** "complete", or "preview" for a book still being written. */
   status: "complete" | "preview";
+  /** Cover art, shown on the landing page and promo cards. */
+  cover?: ImageMetadata;
   copyright: string;
   ogImage: string;
 }
@@ -31,6 +36,7 @@ export const theStillFlame: Book = {
   ],
   summary: "On Psi, every heart is heard. Some secrets burn anyway. A science-fantasy novel by Victor Mjimapemba.",
   status: "complete",
+  cover: seriesCover,
   copyright: "© 2026 Victor Mjimapemba. All rights reserved.",
   ogImage: "/og-the-still-flame.jpg",
 };
@@ -43,6 +49,7 @@ export const bookTwo: Book = {
   summary:
     "A work-in-progress preview of the second book in Psi Is Wide, the sequel to The Still Flame, by Victor Mjimapemba.",
   status: "preview",
+  cover: seriesCover,
   copyright: "© 2026 Victor Mjimapemba. All rights reserved.",
   ogImage: "/og-book-two.jpg",
 };

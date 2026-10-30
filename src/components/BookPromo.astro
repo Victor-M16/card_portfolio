@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { theStillFlame, type Book } from "@/data/books";
 
 interface Props {
@@ -10,19 +11,29 @@ const { headingLevel: Heading = "h3", book = theStillFlame } = Astro.props;
 const href = `/fun/${book.id}/`;
 ---
 
-<article class="bg-tertiary relative max-w-3xl overflow-hidden rounded-2xl p-8 sm:p-10">
-  <div class="green-pink-gradient absolute inset-y-0 left-0 w-1" aria-hidden="true"></div>
-  <p class="text-secondary text-sm tracking-wider uppercase">
-    {book.status === "preview" ? "Work in progress" : "A novel"} · {book.series}
-  </p>
-  <Heading class="mt-2 font-serif text-3xl font-bold text-fg sm:text-4xl">
-    <a href={href} class="after:absolute after:inset-0 hover:underline">
-      {book.title}
-    </a>
-  </Heading>
-  {book.tagline && <p class="text-gold mt-3 font-serif text-lg italic">{book.tagline}</p>}
-  <p class="text-secondary mt-4">{book.description?.[0] ?? book.summary}</p>
-  <span class="text-gold mt-6 inline-block font-medium" aria-hidden="true">
-    Read it free →
-  </span>
+<article class="bg-tertiary relative flex max-w-3xl gap-6 overflow-hidden rounded-2xl p-8 sm:p-10">
+  {book.cover && (
+    <Image
+      src={book.cover}
+      alt=""
+      width={240}
+      class="hidden w-28 shrink-0 self-start rounded-md shadow-lg xs:block sm:w-32"
+    />
+  )}
+  <div>
+    <div class="green-pink-gradient absolute inset-y-0 left-0 w-1" aria-hidden="true"></div>
+    <p class="text-secondary text-sm tracking-wider uppercase">
+      {book.status === "preview" ? "Work in progress" : "A novel"} · {book.series}
+    </p>
+    <Heading class="mt-2 font-serif text-3xl font-bold text-fg sm:text-4xl">
+      <a href={href} class="after:absolute after:inset-0 hover:underline">
+        {book.title}
+      </a>
+    </Heading>
+    {book.tagline && <p class="text-gold mt-3 font-serif text-lg italic">{book.tagline}</p>}
+    <p class="text-secondary mt-4">{book.description?.[0] ?? book.summary}</p>
+    <span class="text-gold mt-6 inline-block font-medium" aria-hidden="true">
+      {book.status === "preview" ? "Read the preview →" : "Read it free →"}
+    </span>
+  </div>
 </article>
